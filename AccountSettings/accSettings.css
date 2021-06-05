@@ -1,0 +1,74 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+.hdr {
+    background: #34262B;
+}
+
+main h1 {
+    text-align: center;
+    color: black;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    margin: 40px auto 40px;
+    font-size: 40px;
+}
+
+input[type=file] {
+    padding: 12px 0;
+}
+
+main form {
+    width: 30%;
+    margin: auto;
+}
+
+main form input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    font-family: 'Source Sans Pro';
+    color: black;
+    font-weight: 600;
+}
+
+main form button {
+    width: 100%;
+    background-color: #34262B;
+    padding: 12px;
+    font-family: 'Source Sans Pro';
+    color: white;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+
+.deactivate-btn {
+    text-align: center;
+    color: #000000;
+    margin: 20px auto;
+    width: 15%;
+    border-bottom: 1px solid #000000;
+}
+
+@media (max-width: 800px) {
+
+    main h1 {
+        font-size: 25px;
+    }
+    main form {
+        width: 50%;
+    }
+}

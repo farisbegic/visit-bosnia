@@ -1,0 +1,267 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.overlay {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 60vh;
+    background: linear-gradient(180deg, rgba(73, 73, 73, 0.67) 0%, rgba(0, 0, 0, 0.67) 100%);
+}
+
+body {
+    font-family: Montserrat;
+}
+
+.cover {
+    height: 60vh;
+    background-position: center center;
+}
+
+.line1 {
+    width: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+.h1 {
+    position: relative;
+    z-index: 1;
+    margin-top: 4%;
+    font-family: Montserrat;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 500;
+    font-size: 100px;
+    color: white;
+}
+
+
+.search {
+    padding: 20px 0;
+    width: 100%;
+}
+
+.mid .search input[type=text] {
+    font-size: 15px;
+    line-height: 18px;
+    width: 74%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.5);
+}
+
+
+.mid .search button {
+    width: 25%;
+    padding: 20px;
+    background: #34262B;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+}
+
+.subtype-text {
+    color: #000000;
+    padding: 0;
+}
+
+dt {
+    padding: 5px;
+}
+
+.content {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.35);
+    width: 100%;
+}
+
+form {
+    margin: 50px auto 20px;
+}
+
+h2, dl {
+    padding: 10px;
+}
+
+.subtype dl dt:hover, .pricing dl dt:hover, .special dl dt:hover {
+   color:#B66B21;
+}
+
+.pricing dl {
+    font-weight: bolder;
+}
+.mid .subtype, .mid .special, .mid .pricing {
+    padding: 10px;
+}
+
+.line {
+    width: 1px;
+}
+
+.box {
+    width: 300px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+    margin: 10px 0;
+}
+
+.title {
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 22px;
+    padding: 10px 5px;
+}
+
+.object-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 32px 32px 0 0;
+}
+
+.contents {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.one-info {
+    padding: 10px 5px;
+}
+
+.info {
+    padding: 20px;
+}
+
+.info-line {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 0 5px;
+}
+
+i {
+    font-size: 20px;
+}
+
+.pagination a {
+    color: rgba(46, 57, 63, 0.6);
+    padding: 8px 16px;
+    border: 3px black;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+
+.pagination a.active {
+    background-color: black;
+    color: white;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5%;
+}
+
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.mid {
+    height: 1700px;
+    width: 1070px;
+}
+
+@media (max-width: 1080px) {
+
+    .h1 {
+        margin-top: 10%;
+        font-size: 80px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .content {
+        display: block;
+        width: 100%;
+    }
+
+    .mid .search input[type=text] {
+        padding: 15px;
+        width: 65%;
+    }
+
+    .line {
+        width: 50px;
+    }
+
+    .mid .search button {
+        padding: 15px;
+        width: 33%;
+    }
+
+    .contents {
+        display: block;
+    }
+
+    .box {
+        margin: 20px auto;
+        width: 50%;
+    }
+
+    .mid {
+        height: auto;
+    }
+
+    .contents {
+        width: auto;
+    }
+
+    .pagination {
+        margin-bottom: 5%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 740px) {
+
+    .h1 {
+        font-size: 70px;
+    }
+
+    .box {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 496px) {
+
+    .h1 {
+        font-size: 50px;
+    }
+
+    a {
+        display: block;
+        text-align: center;
+    }
+}

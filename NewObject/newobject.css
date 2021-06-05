@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.s1 {
+    background-color: #34262B;
+}
+
+.add-title {
+    color: #000;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 30px;
+    text-align: center;
+    padding: 35px 0 0 0;
+}
+
+form {
+    width: 70%;
+    margin: 30px auto;
+}
+
+.first-part, .second-part {
+    width: 49%;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+select, input, textarea, button {
+    font-family: "Source Sans Pro", sans-serif;
+    width: 100%;
+    margin: 10px;
+    padding: 12px;
+}
+
+textarea {
+    resize: none;
+    overflow: auto;
+}
+
+button {
+    background-color: #34262B;
+    color: #fff;
+}
+
+.check-box {
+    padding: 12px;
+    display: none;
+}
+
+label {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+input[type=checkbox] {
+    width: auto;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    justify-content: space-between;
+}

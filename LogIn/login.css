@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Source+Sans+Pro:wght@300;400&display=swap');
+
+header {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    display: flex;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    font-size: 36px;
+}
+
+
+
+html, body {
+    height: 100%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-repeat: no-repeat;
+    object-position: center;
+    background-size: cover;
+    font-family: 'Montserrat';
+}
+
+form {
+    margin: 11% auto;
+    width: 30%;
+}
+
+form #flex {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+form p, span {
+    color: white;
+    font-size: 14px;
+}
+
+form a {
+    color: #FFD99F;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+form input {
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid white;
+    padding: 12px;
+    font-family: Source Sans Pro;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+::placeholder {
+    font-family: "Source Sans Pro";
+    font-weight: bolder;
+    font-size: 15px;
+    color: white;
+}
+
+form button {
+    color: white;
+    width: 100%;
+    border: none;
+    margin-top: 15px;
+    display: block;
+    background-color: #FFD99F;
+    padding: 12px;
+    font-family: Montserrat;
+    font-weight: bolder;
+}
+
+form input:focus {
+    outline-width: 0;
+}
+
+@media (max-width: 800px) {
+
+    body {
+        width: auto;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    form {
+        width: 40%;
+    }
+}
+
+@media (max-width: 500px) {
+
+    #flex {
+        flex-direction: column;
+        align-items: center;
+    }
+}

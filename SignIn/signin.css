@@ -1,0 +1,172 @@
+html, body {
+    height: 100%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-repeat: no-repeat;
+    object-position: center;
+    background-size: cover;
+    font-family: 'Montserrat';
+}
+
+header {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    display: flex;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    font-size: 36px;
+}
+
+
+
+main h3 {
+    margin: 60px 0 30px 0;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+}
+
+form {
+    width: 50%;
+    margin: auto;
+}
+
+.existing{
+    color: #fff;
+    font-family: "Source Sans Pro", sans-serif;
+    text-align: center;
+    padding: 0 0 10px 0;
+}
+
+form #mainDiv {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main h3 {
+    text-align: center;
+}
+
+#dt {
+    border: 1px solid white;
+    color: white;
+    font-family: "Source Sans Pro";
+    font-weight: bolder;
+}
+
+.part {
+    width: 49%;
+}
+
+.part input {
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid white;
+    padding: 12px;
+    font-family: Source Sans Pro;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
+}
+
+input[type="file"] {
+    border: none;
+    color: white;
+}
+
+::placeholder {
+    font-family: "Source Sans Pro";
+    font-weight: bolder;
+    font-size: 15px;
+    color: white;
+}
+
+select:focus {
+    outline-width: 0;
+}
+
+select {
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid white;
+    padding: 12px;
+    font-family: Source Sans Pro;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+select option {
+    color: black;
+    font-family: "Source Sans Pro";
+    font-weight: bolder;
+}
+
+button {
+    border: 0;
+    color: white;
+    width: 100%;
+    float: right;
+    background-color: #FFD99F;
+    color: white;
+    padding: 10px;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: bolder;
+
+}
+
+form input:focus {
+    outline-width: 0;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        width: auto;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    form #mainDiv {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .part {
+        width: 100%;
+    }
+
+    form {
+        width: 50%;
+        margin: auto;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    select {
+        width: 100%;
+    }
+}

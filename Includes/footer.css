@@ -1,0 +1,13 @@
+footer {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+}
+
+footer h2 {
+    font-family: Montserrat;
+    color: #ffff;
+    background-color: #34262B;
+    font-weight: 400;
+    padding: 30px;
+}

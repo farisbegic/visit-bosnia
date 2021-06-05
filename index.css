@@ -1,0 +1,236 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+/* General */
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background: url("images/homephoto.png");
+    height: 100%;
+}
+
+.window-height {
+    height: 100vh;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+/* Section 1 */
+
+#S1 {
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+/* Header */
+
+header {
+    justify-content: center;
+    padding: 30px 0;
+}
+
+i {
+    color: #ffff;
+    font-size: 1.4rem;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Text */
+
+p {
+    text-align: center;
+    color: #ffff;
+}
+
+.thin {
+    text-transform: uppercase;
+    font-size: 90px;
+    font-weight: 200;
+    line-height: 80%;
+}
+
+.thick {
+    text-transform: uppercase;
+    font-size: 70px;
+    font-weight: 500;
+}
+
+/* Explore */
+
+.explore {
+    justify-content: center;
+    flex-direction: column;
+}
+
+.explore-text {
+    font-size: 1.1rem;
+}
+
+.fa-chevron-down {
+    font-size: 1.4rem;
+}
+
+/* Section 2 */
+
+#S2 {
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Our Goal */
+
+.goal {
+    width: 35%;
+    text-align: center;
+}
+
+h2 {
+    color: #ffff;
+}
+
+.goal-text {
+    text-align: justify;
+}
+
+hr {
+    color: #ffff;
+    width: 60%;
+    margin: 20px auto;
+}
+
+.explore-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffff;
+    border: 1px solid #FFD99F;
+    padding: 15px 25px;
+    border-radius: 3px;
+    margin: 30px 0;
+}
+
+.explore-btn:hover {
+    background-color: #FFD99F;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Section 3 */
+
+#S3 {
+    justify-content: center;
+    flex-direction: column;
+}
+
+.fixed {
+    position: relative;
+}
+
+.marker {
+    position: absolute;
+    color: #ffff;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.zenica {
+    top: 43%;
+    left: 51%;
+}
+
+.travnik {
+    top: 39%;
+    left: 42%;
+}
+
+.sarajevo {
+    left: 58%;
+    top: 53%;
+}
+
+.bihac {
+    left: 18%;
+    top: 21%;
+}
+
+.banja-luka {
+    left: 34%;
+    top: 23%;
+}
+
+.mostar {
+    left: 50%;
+    top: 69%;
+}
+
+.tuzla {
+    left: 64%;
+    top: 32%;
+}
+
+.marker:hover {
+    color: #9d21ff;
+}
+
+/* Mobile display */
+
+.mobile {
+    display: none;
+}
+
+.wrapper {
+    justify-content: space-between;
+}
+
+h4 {
+    color: #ffff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+hr {
+    width: 100%;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 780px) {
+
+    .bckg {
+        width: auto;
+    }
+
+    .i {
+        font-size: 0.8rem;
+    }
+
+    .thin {
+        font-size: 50px;
+    }
+
+    .thick {
+        font-size: 37px;
+    }
+
+    .goal {
+        width: 70%;
+    }
+
+    .map, span {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+}

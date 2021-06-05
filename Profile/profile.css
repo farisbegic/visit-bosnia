@@ -1,0 +1,203 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+#hdr {
+    background-color: #34262B;
+}
+
+#user {
+    width: 100%;
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+#user #info{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 50px 0;
+}
+
+#user img {
+    float: left;
+    height: 100%;
+    width: 30%;
+    margin-right: 30px;
+    border-radius: 50%;
+}
+
+#user #info h1 {
+    color: black;
+    font-size: 70px;
+    font-family: 'Montserrat';
+}
+
+#user #info span, i {
+    color: gray;
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+#user #info #settings {
+    float: right;
+}
+
+#user #info #settings i {
+    font-size: 30px;
+    color: black;
+    display: inline-block;
+}
+
+main {
+    width: 1070px;
+    margin: 60px auto;
+}
+
+.box {
+    width: 300px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+    margin: 10px 0;
+}
+
+.title {
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 22px;
+}
+
+.object-image {
+    width: 100%;
+    border-radius: 32px 32px 0 0;
+}
+
+.content {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.heart {
+    color: gray;
+    padding: 0 4px;
+}
+
+.info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.info-line {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 0 5px;
+}
+
+.deleteObjectBtn{
+    color: red;
+}
+
+a.deleteObjectBtn{
+    padding: 0 6px;
+}
+
+i {
+    font-size: 20px;
+    color: #000;
+}
+
+.pagination a {
+    color: rgba(46, 57, 63, 0.6);
+    padding: 8px 16px;
+    border: 3px black;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+
+.pagination a.active {
+    background-color: black;
+    color: white;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+@media(max-width: 1040px) {
+
+    #user img {
+        width: 40%;
+    }
+
+    #user #info h1 {
+        font-size: 50px;
+    }
+}
+
+@media(max-width: 770px) {
+
+    #user img {
+        width: 40%;
+    }
+
+    #user #info h1 {
+        font-size: 35px;
+    }
+}
+
+@media(max-width: 510px) {
+
+    #user img {
+        width: 50%;
+    }
+
+    #user {
+        width: 90%;
+    }
+
+    #settings {
+        float: left;
+    }
+
+    #user #info h1 {
+        font-size: 25px;
+    }
+
+    #user #info span {
+        font-size: 15px;
+    }
+}
+@media(max-width: 850px) {
+
+    main {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .box {
+        width: 100%;
+    }
+
+}
