@@ -15,9 +15,9 @@ $page = $_GET['page'] ?? 1;
 
 if ($_POST){
     $input = $_POST['search'];
-    $queryObjects = mysqli_query($conn, "SELECT * FROM object o WHERE o.name LIKE '%{$input}%' AND o.isactive = 1");
+    $queryObjects = mysqli_query($conn, "SELECT * FROM object o WHERE o.name LIKE '%{$input}%' AND o.active = 1");
 } else {
-    $queryObjects = mysqli_query($conn, "SELECT * FROM object o WHERE o.isactive = 1");
+    $queryObjects = mysqli_query($conn, "SELECT * FROM object o WHERE o.active = 1");
 }
 
 $numOfObjects = mysqli_num_rows($queryObjects);
@@ -28,9 +28,9 @@ $offset = ($page - 1) * $objectsPerPage;
 // Fetch
 
 if ($_POST){
-    $query = mysqli_query($conn,"SELECT o.oid, o.name, o.phone, o.street, o.email FROM object o WHERE o.name LIKE '%{$input}%' AND o.isactive = 1 LIMIT {$offset}, {$objectsPerPage} ");
+    $query = mysqli_query($conn,"SELECT o.oid, o.name, o.phone, o.street, o.email FROM object o WHERE o.name LIKE '%{$input}%' AND o.active = 1 LIMIT {$offset}, {$objectsPerPage} ");
 } else {
-    $query = mysqli_query($conn, "SELECT o.oid, o.name, o.phone, o.street, o.email FROM object o WHERE o.isactive = 1 LIMIT {$offset}, {$objectsPerPage}");
+    $query = mysqli_query($conn, "SELECT o.oid, o.name, o.phone, o.street, o.email FROM object o WHERE o.active = 1 LIMIT {$offset}, {$objectsPerPage}");
 }
 ?>
 <!doctype html>

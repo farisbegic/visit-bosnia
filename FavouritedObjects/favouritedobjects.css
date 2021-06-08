@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    background-color: #34262B;
+}
+
+.wrapper{
+    width: 1500px;
+    margin: 0 auto;
+}
+
+.second-nav{
+    margin: 30px 0;
+}
+
+form{
+    display: inline;
+}
+
+.search-bar{
+    background: #FFFFFF;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    border: none;
+    padding: 15px;
+}
+
+.addObjectBtn{
+    background-color: #34262B;
+    color: #fff;
+    border-radius: 2px;
+    padding: 16px 27px;
+}
+
+td, th{
+    padding: 7px 5px;
+}
+
+table{
+    margin: 30px 0;
+    width: 100%;
+}
+
+table, td, th{
+    border: 1px solid rgba(0,0,0,0.2);
+    border-collapse: collapse;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.icon{
+    color: #000000;
+}
+
+.pagination a {
+    color: rgba(46, 57, 63, 0.6);
+    padding: 8px 16px;
+    border: 3px black;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+
+.pagination a.active {
+    background-color: black;
+    color: white;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 30px 0;
+}
+
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}

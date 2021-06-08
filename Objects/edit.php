@@ -13,7 +13,6 @@ $objectID = $_GET['id'];
 $object = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name, street, phone, opening_hours, closing_hours, pricing, webpage, email, start_day, close_day, description, isVegan, isGlutenFree, isPetFriendly, isHalal, city, image FROM object WHERE oid = '{$objectID}'"));
 
 
-
 // Get type of the object
 
 $objectType = mysqli_fetch_assoc(mysqli_query($conn, "SELECT type FROM objecttype ot WHERE ot.object = '{$objectID}'"));
@@ -59,6 +58,9 @@ if ($_POST){
         $imgName = $_FILES['image']['name'];
         move_uploaded_file($_FILES['image']['tmp_name'], "../images/ObjectImages/" . $imgName);
     }
+    mysqli_query($conn, "UPDATE object SET name = '{$name}', phone = '{$phone}', street = '{$street}', opening_hours = '{$oHours}', closing_hours = '{$cHours}', pricing = '{$pricing}', webpage = '{$webpage}', email = '{$email}', start_day = '{$oDay}', close_day = '{$cDay}', description = '{$description}', isVegan = '{$isVegan}', isGlutenFree = '{$isGlutenFree}', isPetFriendly = '{$isPetFriendly}', isHalal = '{$isHalal}', city = '{$city}', image = '{$imgName}' WHERE oid = $objectID");
+    header("Location: objects.php");
+    exit();
 }
 
 ?>
@@ -78,7 +80,7 @@ if ($_POST){
 </div>
 
 
-<h1 class="add-title">Add Your Object</h1>
+<h1 class="add-title">Edit Object</h1>
 
 <form action="" method="POST" enctype="multipart/form-data">
 
@@ -105,12 +107,12 @@ if ($_POST){
             <select name="openingDay" required>
                 <option value="" disabled selected>Opening Day</option>
                 <option value="monday" <?php if ($object['start_day'] == 'monday') echo "selected" ?> >Monday</option>
-                <option value="monday" <?php if ($object['start_day'] == 'tuesday') echo "selected" ?> >Tuesday</option>
-                <option value="monday" <?php if ($object['start_day'] == 'wednesday') echo "selected" ?> >Wednesday</option>
-                <option value="monday" <?php if ($object['start_day'] == 'thursday') echo "selected" ?> >Thursday</option>
-                <option value="monday" <?php if ($object['start_day'] == 'friday') echo "selected" ?> >Friday</option>
-                <option value="monday" <?php if ($object['start_day'] == 'saturday') echo "selected" ?> >Saturday</option>
-                <option value="monday" <?php if ($object['start_day'] == 'sunday') echo "selected" ?> >Sunday</option>
+                <option value="tuesday" <?php if ($object['start_day'] == 'tuesday') echo "selected" ?> >Tuesday</option>
+                <option value="wednesday" <?php if ($object['start_day'] == 'wednesday') echo "selected" ?> >Wednesday</option>
+                <option value="thursday" <?php if ($object['start_day'] == 'thursday') echo "selected" ?> >Thursday</option>
+                <option value="friday" <?php if ($object['start_day'] == 'friday') echo "selected" ?> >Friday</option>
+                <option value="saturday" <?php if ($object['start_day'] == 'saturday') echo "selected" ?> >Saturday</option>
+                <option value="sunday" <?php if ($object['start_day'] == 'sunday') echo "selected" ?> >Sunday</option>
             </select>
 
             <select name="city" required>
@@ -141,12 +143,12 @@ if ($_POST){
             <select name="closingDay" required>
                 <option value="" disabled selected>Closing Day</option>
                 <option value="monday" <?php if ($object['close_day'] == 'monday') echo "selected" ?> >Monday</option>
-                <option value="monday" <?php if ($object['close_day'] == 'tuesday') echo "selected" ?> >Tuesday</option>
-                <option value="monday" <?php if ($object['close_day'] == 'wednesday') echo "selected" ?> >Wednesday</option>
-                <option value="monday" <?php if ($object['close_day'] == 'thursday') echo "selected" ?> >Thursday</option>
-                <option value="monday" <?php if ($object['close_day'] == 'friday') echo "selected" ?> >Friday</option>
-                <option value="monday" <?php if ($object['close_day'] == 'saturday') echo "selected" ?> >Saturday</option>
-                <option value="monday" <?php if ($object['close_day'] == 'sunday') echo "selected" ?> >Sunday</option>
+                <option value="tuesday" <?php if ($object['close_day'] == 'tuesday') echo "selected" ?> >Tuesday</option>
+                <option value="wednesday" <?php if ($object['close_day'] == 'wednesday') echo "selected" ?> >Wednesday</option>
+                <option value="thursday" <?php if ($object['close_day'] == 'thursday') echo "selected" ?> >Thursday</option>
+                <option value="friday" <?php if ($object['close_day'] == 'friday') echo "selected" ?> >Friday</option>
+                <option value="saturday" <?php if ($object['close_day'] == 'saturday') echo "selected" ?> >Saturday</option>
+                <option value="sunday" <?php if ($object['close_day'] == 'sunday') echo "selected" ?> >Sunday</option>
             </select>
 
             <select name="country" required>

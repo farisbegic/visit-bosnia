@@ -2,6 +2,7 @@ footer {
     text-align: center;
     position: absolute;
     width: 100%;
+    margin-top: 100px;
 }
 
 footer h2 {

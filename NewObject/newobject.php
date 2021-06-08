@@ -178,7 +178,7 @@ if ($_POST){
                 </div>
             </div>
 
-            <input type="file" name="image" id="image">
+            <input type="file" name="image" id="image" required>
 
         </div>
     </div>

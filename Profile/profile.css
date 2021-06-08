@@ -78,6 +78,8 @@ main {
 .object-image {
     width: 100%;
     border-radius: 32px 32px 0 0;
+    object-fit: cover;
+    height: 200px;
 }
 
 .content {

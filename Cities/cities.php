@@ -15,7 +15,7 @@ $page = $_GET['page'] ?? 1;
 
 if ($_POST){
     $input = $_POST['search'];
-    $queryObjects = mysqli_query($conn, "SELECT * FROM city WHERE name LIKE '%{$input}%' AND o.isactive = 1");
+    $queryObjects = mysqli_query($conn, "SELECT * FROM city WHERE name LIKE '%{$input}%' AND o.active = 1");
 } else {
     $queryObjects = mysqli_query($conn, "SELECT * FROM city");
 }

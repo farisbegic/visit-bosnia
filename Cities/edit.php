@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] == 0) {
     header("Location: ../object.php");
     exit();
@@ -20,7 +22,7 @@ if ($_POST){
     $countryID = $_POST['country'];
 
     mysqli_query($conn, "UPDATE city c SET c.name = '{$city}', c.Country = '{$countryID}' WHERE c.cid = $cityID");
-    header("Location: cities.php");
+    header("Location: mostactiveusers.php");
     exit();
 }
 
@@ -37,11 +39,11 @@ if ($_POST){
 <body>
 
 <div class="s1">
-    <?php include("../Header/header.php");?>
+    <?php include("../Includes/header.php");?>
 </div>
 
 
-<h1 class="add-title">Add Your City</h1>
+<h1 class="add-title">Edit City</h1>
 
 <form action="" method="POST" enctype="multipart/form-data">
 
@@ -57,7 +59,7 @@ if ($_POST){
     <button type="submit">Submit</button>
 </form>
 
-<?php include("../Footer/footer.php");?>
+<?php include("../Includes/footer.php");?>
 
 <script src="../script.js"></script>
 </body>

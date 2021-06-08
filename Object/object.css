@@ -21,7 +21,7 @@
 
 .object-wrap {
     width: 60%;
-    margin: 150px auto;
+    margin: 90px auto;
     position: relative;
 }
 
@@ -51,7 +51,7 @@ a i:hover + .rating.info-icon{
     font-family: "Montserrat", sans-serif;
     background-color: #34262B;
     padding: 10px 20px;
-    margin-right 10px;
+    margin-right: 10px;
 }
 
 .object-title {

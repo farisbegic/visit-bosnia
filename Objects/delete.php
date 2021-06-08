@@ -11,7 +11,7 @@ require("../dbase.php");
 
 $oID = $_GET['id'];
 
-mysqli_query($conn, "UPDATE object SET isactive = 0 WHERE oid = '{$oID}'");
+mysqli_query($conn, "UPDATE object SET active = 0 WHERE oid = '{$oID}'");
 
 header("Location: objects.php");
 exit();

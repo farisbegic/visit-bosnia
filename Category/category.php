@@ -13,15 +13,15 @@ $pageLink = "category.php?category= " . $categoryID;
 
 // Pagination
 
-$objects = mysqli_fetch_assoc(mysqli_query($conn, "SELECT DISTINCT count(*) as numOfPages FROM objecttype ot, object o, type t WHERE o.isactive = 1 AND (t.supertype = {$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid"));
+$objects = mysqli_fetch_assoc(mysqli_query($conn, "SELECT DISTINCT count(*) as numOfPages FROM objecttype ot, object o, type t WHERE o.active = 1 AND (t.supertype = {$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid"));
 
 if ($_POST) {
     $input = $_POST['inputSearch'];
-    $objects = mysqli_fetch_assoc(mysqli_query($conn,"SELECT count(*) as numOfPages FROM objecttype ot, object o, type t WHERE o.isactive = 1 AND ot.type = {$categoryID} AND ot.object = o.oid AND o.name LIKE '%{$input}%'"));
+    $objects = mysqli_fetch_assoc(mysqli_query($conn,"SELECT count(*) as numOfPages FROM objecttype ot, object o, type t WHERE o.active = 1 AND ot.type = {$categoryID} AND ot.object = o.oid AND o.name LIKE '%{$input}%'"));
 }
 
 if (isset($_GET['pricing'])) {
-    $objects = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as numOfPages FROM objecttype ot, object o, type t WHERE o.isactive = 1 AND ot.type= {$categoryID} AND ot.object = o.oid AND o.pricing = {$pricing}"));
+    $objects = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as numOfPages FROM objecttype ot, object o, type t WHERE o.active = 1 AND ot.type= {$categoryID} AND ot.object = o.oid AND o.pricing = {$pricing}"));
 }
 
 $objectsPerPage = 6;
@@ -35,19 +35,19 @@ $subtypeQuery = mysqli_query($conn, "SELECT t.tid, t.name FROM type t WHERE t.su
 
 // Query for displaying objects depending on the type/category
 
-$objectQuery = mysqli_query($conn, "SELECT DISTINCT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM objecttype ot, object o, type t WHERE o.isactive = 1 AND (t.supertype = {$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid LIMIT {$offset} , {$objectsPerPage}");
+$objectQuery = mysqli_query($conn, "SELECT DISTINCT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM objecttype ot, object o, type t WHERE o.active = 1 AND (t.supertype = {$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid LIMIT {$offset} , {$objectsPerPage}");
 
 // Search bar
 
 if ($_POST) {
     $input = $_POST['inputSearch'];
-    $objectQuery = mysqli_query($conn,"SELECT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM objecttype ot, object o, type t WHERE o.isactive = 1 AND (t.supertype = {$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid AND o.name LIKE '%{$input}%' LIMIT {$offset} , {$objectsPerPage}");
+    $objectQuery = mysqli_query($conn,"SELECT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM objecttype ot, object o, type t WHERE o.active = 1 AND (t.supertype = {$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid AND o.name LIKE '%{$input}%' LIMIT {$offset} , {$objectsPerPage}");
 }
 
 // Pricing
 
 if (isset($_GET['pricing'])) {
-    $objectQuery = mysqli_query($conn, "SELECT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM objecttype ot, object o, type t WHERE o.isactive = 1 AND (t.supertype ={$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid AND o.pricing = {$pricing} LIMIT {$offset} , {$objectsPerPage}");
+    $objectQuery = mysqli_query($conn, "SELECT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM objecttype ot, object o, type t WHERE o.active = 1 AND (t.supertype ={$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid AND o.pricing = {$pricing} LIMIT {$offset} , {$objectsPerPage}");
 }
 ?>
 
@@ -110,7 +110,7 @@ if (isset($_GET['pricing'])) {
     <div class="contents">
         <?php while ($row = mysqli_fetch_assoc($objectQuery)): ?>
             <div class="box" onClick="location.href='../Object/object.php?object=<?= $row['oid']; ?>'" style="cursor:pointer;">
-                <img class="object-image" src="../images/ObjectImages/<?= $row['image'] ?>" alt="vijecnica">
+                <img class="object-image" src="../images/ObjectImages/<?php if ($row['image']) echo $row['image']; else echo "default.jpg"; ?>" alt="Picture">
                 <div class="info">
                     <h1 class="title"><?= $row['name'] ?></h1>
                     <div class="one-info">

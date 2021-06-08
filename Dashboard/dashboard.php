@@ -10,7 +10,7 @@
     require("../dbase.php");
 
     // Fetch number of objects
-    $objects = mysqli_query($conn, "SELECT * FROM object o WHERE o.isactive = 1");
+    $objects = mysqli_query($conn, "SELECT * FROM object o WHERE o.active = 1");
     $numOfObjects = mysqli_num_rows($objects);
 
     // Fetch number of cities
@@ -18,8 +18,18 @@
     $numOfCities = mysqli_num_rows($cities);
 
     // Fetch number of registered users
-    $users = mysqli_query($conn, "SELECT * FROM user");
+    $users = mysqli_query($conn, "SELECT * FROM user u WHERE u.active = 1");
     $numOfUsers = mysqli_num_rows($users);
+
+    // Fetch number of favourited objects
+
+    $favouritedObjects = mysqli_query($conn, "SELECT * FROM fav_objects");
+    $numOfFavourited = mysqli_num_rows($favouritedObjects);
+
+    // Fetch number of most active users
+
+    $activeUsers = mysqli_query($conn, "SELECT * FROM most_active_users");
+    $numOfActive = mysqli_num_rows($activeUsers);
 
 ?>
 <!doctype html>
@@ -58,6 +68,22 @@
                 <p class="type">Users</p>
             </div>
             <a class="view-button" href="../Users/users.php">View Users</a>
+        </div>
+
+        <div class="boxing">
+            <div class="text-info">
+                <p class="number"><?= $numOfFavourited ?></p>
+                <p class="type">Favourited Objects</p>
+            </div>
+            <a class="view-button" href="../FavouritedObjects/favouritedobjects.php">Favourited</a>
+        </div>
+
+        <div class="boxing">
+            <div class="text-info">
+                <p class="number"><?= $numOfActive ?></p>
+                <p class="type">Active Users</p>
+            </div>
+            <a class="view-button" href="../MostActiveUsers/mostactiveusers.php">Active Users</a>
         </div>
     </div>
 

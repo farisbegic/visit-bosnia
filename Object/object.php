@@ -28,7 +28,7 @@ if ($objectRating) {
 
 // Fetch an object with given ID
 
-$objectQuery = mysqli_query($conn, "SELECT o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.description, o.image FROM object o WHERE o.oid = '$objectID'");
+$objectQuery = mysqli_query($conn, "SELECT o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.description, o.image, o.averagerating FROM object o WHERE o.oid = '$objectID' AND active = 1");
 
 $object = mysqli_fetch_assoc($objectQuery);
 
@@ -44,7 +44,7 @@ $object = mysqli_fetch_assoc($objectQuery);
     <link rel="stylesheet" href="../Includes/footer.css">
 </head>
 <body onload="rating()">
-    <div id="S1" style="background-image: url('../images/ObjectImages/<?= $object['image'] ?>')">
+    <div id="S1" style="background-image: url('../images/ObjectImages/<?php if ($object['image']) echo $object['image']; else echo "default.jpg"; ?>')">
         <div class="overlay"></div>
         <?php include("../Includes/header.php");?>
 
@@ -77,7 +77,7 @@ $object = mysqli_fetch_assoc($objectQuery);
                     <?php endif; ?>
                 </div>
                 <div class="object-rating">
-                    <input type="hidden" value="2.4" id="avg">
+                    <input type="hidden" value="<?= $object['averagerating'] ?>" id="avg">
                     <i class="far fa-star info-icon"></i>
                     <i class="far fa-star info-icon"></i>
                     <i class="far fa-star info-icon"></i>

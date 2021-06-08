@@ -1,21 +1,21 @@
 <?php
     require("../dbase.php");
     $page = $_GET['page'] ?? 1;
-    $searchQuery = mysqli_query($conn, "SELECT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM object o WHERE o.isactive = 1 LIMIT 0, 3");
+    $searchQuery = mysqli_query($conn, "SELECT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM object o WHERE o.active = 1 LIMIT 0, 3");
 
     if ($_POST){
         $input = $_POST['searchInput'];
 
         // Pagination
 
-        $pagesQuery = mysqli_query($conn, "SELECT count(*) as numOfPages FROM object o WHERE o.name LIKE '%{$input}%' AND o.isactive = 1");
+        $pagesQuery = mysqli_query($conn, "SELECT count(*) as numOfPages FROM object o WHERE o.name LIKE '%{$input}%' AND o.active = 1");
         $objects = mysqli_fetch_assoc($pagesQuery);
         $totalObjects = $objects['numOfPages'];
         $objectsPerPage = 3;
         $pages = ceil($totalObjects/$objectsPerPage);
         $offset = ($page - 1) * $objectsPerPage;
 
-        $searchQuery = mysqli_query($conn, "SELECT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM object o a");
+        $searchQuery = mysqli_query($conn, "SELECT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM object o WHERE o.name LIKE '%{$input}%' AND o.active = 1");
     }
 
 ?>
@@ -55,7 +55,7 @@
             <?php while ($row = mysqli_fetch_assoc($searchQuery)): ?>
 
                 <div class="box" onClick="location.href='../Object/object.php?object=<?= $row['oid']; ?>'" style="cursor:pointer;">
-                    <img class="object-image" src="../images/ObjectImages/<?= $row['image'] ?>" alt="vijecnica">
+                    <img class="object-image" src="../images/ObjectImages/<?php if ($row['image']) echo $row['image']; else echo "default.jpg"; ?>" alt="Picture">
                     <div class="info">
                         <h1 class="title"><?= $row['name'] ?></h1>
                         <div class="one-info">

@@ -15,5 +15,5 @@ $cityID = $_GET['id'];
 
 mysqli_query($conn, "DELETE FROM city WHERE cid = '{$cityID}'");
 
-header("Location: cities.php");
+header("Location: mostactiveusers.php");
 exit();
