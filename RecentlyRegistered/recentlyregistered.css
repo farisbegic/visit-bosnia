@@ -1,0 +1,55 @@
+.input-labels{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    margin: 30px auto;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.date{
+    margin: 15px;
+}
+
+.info-text{
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    font-size: 25px;
+    margin: 50px 0;
+}
+
+input[type = date]{
+    border: 0.5px solid rgba(0,0,0,0.3);
+    padding: 10px;
+}
+
+form button {
+    color: white;
+    width: 30%;
+    border: none;
+    margin-top: 15px;
+    display: block;
+    background-color: #34262B;
+    padding: 12px;
+    font-family: Montserrat;
+    font-weight: bolder;
+}
+
+form input:focus {
+    outline-width: 0;
+}
+
+.responsive-table{
+    margin: 0 30px;
+}
+
+@media (max-width: 530px) {
+    .input-labels{
+        width: auto ;
+        margin: 0 10px;
+    }
+}

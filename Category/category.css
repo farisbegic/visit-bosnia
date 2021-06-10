@@ -253,10 +253,13 @@ i {
 @media (max-width: 440px) {
     .mid .search input[type=text]{
         width: 100%;
+        padding: 14px 15px;
     }
 
     .mid .search button{
+        display: inline-block;
         margin: 10px 0;
         width: auto;
+        padding: 10px 15px;
     }
 }

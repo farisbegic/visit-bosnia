@@ -3,7 +3,7 @@
     session_start();
 
     if (!isset($_SESSION['admin']) || $_SESSION['admin'] == 0) {
-        header("Location: ../object.php");
+        header("Location: ../index.php");
         exit();
     }
 
@@ -92,7 +92,7 @@
                 <p class="number"><?= $numOfUsers ?></p>
                 <p class="type">Recently registered</p>
             </div>
-            <a class="view-button" href="../Users/users.php">View Registered</a>
+            <a class="view-button" href="../RecentlyRegistered/recentlyregistered.php">View Registered</a>
         </div>
     </div>
 

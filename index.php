@@ -29,7 +29,7 @@
          <div class="goal">
              <h2 class="thick">Our Goal</h2>
              <hr>
-             <p class="goal-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem beatae commodi, corporis, distinctio doloremque eligendi explicabo iste iusto praesentium quod ratione soluta tempore voluptates voluptatum. Deleniti ea ipsam odit! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda autem doloremque, doloribus eligendi eveniet, facere fuga fugiat fugit iste iure necessitatibus nesciunt odit optio quidem quo rerum, sed? Deserunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid dicta dolorem ducimus enim id in laborum libero, maxime nihil officia quaerat quasi quis, quo tempore, ut vel veniam voluptatibus.</p>
+             <p class="goal-text">Our main objective is to promote tourism in Bosnia and Herzegovina. Being a country with beautiful and breathtaking places, we believe that Bosnia and Herzegovina's charm are not used to its greatest potential. In order to reduce the difficulties navigating through the country for the tourists, as well as the locals, we decided to unify all the interesting sites in one place. Click the "EXPLORE BOSNIA" button in order to choose your city!</p>
              <a href="#S3" class="explore-btn">EXPLORE BOSNIA</a>
          </div>
     </div>

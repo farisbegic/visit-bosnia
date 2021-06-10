@@ -5774,8 +5774,6 @@
       <ColNames>Country</ColNames>
       <RefTableName>country</RefTableName>
       <RefColNames>cid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="1216" parent="411" name="cid">
       <Position>1</Position>
@@ -5912,8 +5910,6 @@
       <ColNames>city</ColNames>
       <RefTableName>city</RefTableName>
       <RefColNames>cid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="1244" parent="413" name="oid">
       <Position>1</Position>
@@ -5946,15 +5942,11 @@
       <ColNames>type</ColNames>
       <RefTableName>type</RefTableName>
       <RefColNames>tid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="1251" parent="413" name="Object">
       <ColNames>object</ColNames>
       <RefTableName>object</RefTableName>
       <RefColNames>oid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="1252" parent="414" name="tid">
       <Position>1</Position>
@@ -5988,8 +5980,6 @@
       <ColNames>supertype</ColNames>
       <RefTableName>type</RefTableName>
       <RefColNames>tid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="1259" parent="415" name="uid">
       <Position>1</Position>
@@ -6081,8 +6071,6 @@
       <ColNames>city</ColNames>
       <RefTableName>city</RefTableName>
       <RefColNames>cid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <trigger id="1278" parent="415" name="date_check">
       <SourceTextLength>192</SourceTextLength>
@@ -6131,15 +6119,11 @@
       <ColNames>user</ColNames>
       <RefTableName>user</RefTableName>
       <RefColNames>uid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="1288" parent="416" name="UserFavorites_object_oid_fk">
       <ColNames>object</ColNames>
       <RefTableName>object</RefTableName>
       <RefColNames>oid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <trigger id="1289" parent="416" name="user_fav_date_trg">
       <SourceTextLength>39</SourceTextLength>
@@ -6193,15 +6177,11 @@ object</ColNames>
       <ColNames>user</ColNames>
       <RefTableName>user</RefTableName>
       <RefColNames>uid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="1300" parent="417" name="UserRatings_object_oid_fk">
       <ColNames>object</ColNames>
       <RefTableName>object</RefTableName>
       <RefColNames>oid</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <trigger id="1301" parent="417" name="user_rating_ins_trg">
       <SourceTextLength>105</SourceTextLength>

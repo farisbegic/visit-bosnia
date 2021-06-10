@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] == 0) {
-    header("Location: ../object.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -22,7 +22,7 @@ if ($_POST){
     $countryID = $_POST['country'];
 
     mysqli_query($conn, "UPDATE city c SET c.name = '{$city}', c.Country = '{$countryID}' WHERE c.cid = $cityID");
-    header("Location: mostactiveusers.php");
+    header("Location: cities.php");
     exit();
 }
 

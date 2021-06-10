@@ -77,7 +77,7 @@ if (isset($_GET['pricing'])) {
 
 <div class="mid">
 <form class="search" action="" method="post">
-    <input type="text" placeholder="Search <?= $category['name'] ?> via name.." name="inputSearch" value="<?= $_POST['inputSearch'] ?? "" ?>">
+    <input type="text" class="search-box" placeholder="Search <?= $category['name'] ?> via name.." name="inputSearch" value="<?= $_POST['inputSearch'] ?? "" ?>">
     <button type="submit">Search</button>
 </form>
 <?php if ($category['name'] === "Catering"): ?>
