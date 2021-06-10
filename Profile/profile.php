@@ -38,6 +38,7 @@ $noOfFavorites = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as tota
     <link rel="stylesheet" type="text/css" href="../Includes/header.css">
     <link rel="stylesheet" type="text/css" href="../Includes/footer.css">
     <link rel="stylesheet" type="text/css" href="profile.css">
+    <link rel="stylesheet" href="../Includes/box.css">
 </head>
 <body>
 
@@ -67,7 +68,7 @@ $noOfFavorites = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as tota
         <div class="content">
 
             <?php while ($row = mysqli_fetch_assoc($userFavorites)): ?>
-                <div class="box" onClick="location.href='../Object/index.php?object=<?= $row['oid']; ?>'" style="cursor:pointer;">
+                <div class="box" onClick="location.href='../Object/object.php?object=<?= $row['oid']; ?>'" style="cursor:pointer;">
                     <img class="object-image" src="../images/ObjectImages/<?php if ($row['image']) echo $row['image']; else echo "default.jpg"; ?>" alt="Picture">
                     <div class="info">
                         <h1 class="title"><?= $row['name'] ?></h1>

@@ -2,7 +2,7 @@ footer {
     text-align: center;
     position: absolute;
     width: 100%;
-    margin-top: 100px;
+    margin-top: 150px;
 }
 
 footer h2 {
@@ -11,4 +11,10 @@ footer h2 {
     background-color: #34262B;
     font-weight: 400;
     padding: 30px;
+}
+
+@media (max-width: 990px) {
+    footer h2{
+        font-size: 20px;
+    }
 }

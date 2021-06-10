@@ -8,9 +8,9 @@
 
 <body background="../images/homephoto.png" style="background-size: cover">
 
-    <?php
-        include("../FormHeader/formheader.php");
-    ?>
+    <header>
+        <h1><a href="../index.php">VisitBosnia</a></h1>
+    </header>
 
 <main>
     <div class = "s1">

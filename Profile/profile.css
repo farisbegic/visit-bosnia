@@ -26,8 +26,9 @@ body {
 
 #user img {
     float: left;
-    height: 100%;
-    width: 30%;
+    height: 260px;
+    width: 260px;
+    object-fit: cover;
     margin-right: 30px;
     border-radius: 50%;
 }
@@ -59,58 +60,24 @@ main {
     margin: 60px auto;
 }
 
-.box {
-    width: 300px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 32px;
-    margin: 10px 0;
-}
-
-.title {
-    font-family: 'Montserrat', sans-serif;
-    color: #000;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 22px;
-}
-
-.object-image {
-    width: 100%;
-    border-radius: 32px 32px 0 0;
-    object-fit: cover;
-    height: 200px;
-}
-
-.content {
-    margin: auto;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
 .heart {
     color: gray;
     padding: 0 4px;
 }
 
-.info {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: space-between;
-}
-
-.info-line {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    padding: 0 5px;
+.fas, .far{
+    margin: 0;
 }
 
 .deleteObjectBtn{
+    color: red;
+}
+
+.content{
+    padding: 50px 0;
+}
+
+a:hover{
     color: red;
 }
 
@@ -149,13 +116,16 @@ i {
 
 @media(max-width: 1040px) {
 
-    #user img {
-        width: 40%;
+    #user{
+        margin: 10px 20px;
     }
-
     #user #info h1 {
         font-size: 50px;
     }
+}
+
+@media (max-width: 940px) {
+    
 }
 
 @media(max-width: 770px) {

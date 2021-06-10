@@ -39,13 +39,20 @@ if ($_POST){
 <html lang="en">
 <head>
     <?php include("../Includes/head.php") ?>
-    <link rel="stylesheet" href="mostactiveusers.css">
+    <link rel="stylesheet" href="../Includes/dashboard.css">
     <link rel="stylesheet" href="../Includes/header.css" type="text/css">
     <link rel="stylesheet" href="../Includes/footer.css" type="text/css">
     <title>Objects</title>
+    <style>
+        .search-bar{
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-<?php include("../Includes/header.php");?>
+<div id="hdr">
+    <?php include("../Includes/header.php"); ?>
+</div>
 
 <div class="wrapper">
     <div class="second-nav">
@@ -53,21 +60,23 @@ if ($_POST){
             <input name="search" class="search-bar" type="text" placeholder="Search user by name">
         </form>
     </div>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>User</th>
-            <th>Number of times favourited</th>
-        </tr>
-        <?php while ($row = mysqli_fetch_assoc($query)): ?>
+    <div class="responsive-table">
+        <table>
             <tr>
-                <td><?= $row['user'] ?></td>
-                <td><?= $row['GetUserName(user)'] ?></td>
-                <td><?= $row['favno'] ?></td>
-
+                <th>ID</th>
+                <th>User</th>
+                <th>Number of times favourited</th>
             </tr>
-        <?php endwhile; ?>
-    </table>
+            <?php while ($row = mysqli_fetch_assoc($query)): ?>
+                <tr>
+                    <td><?= $row['user'] ?></td>
+                    <td><?= $row['GetUserName(user)'] ?></td>
+                    <td><?= $row['favno'] ?></td>
+
+                </tr>
+            <?php endwhile; ?>
+        </table>
+    </div>
     <div class="pagination">
         <?php for ($i=0 ; $i<$pages ; $i++) :?>
             <a href="mostactiveusers.php?page=<?= $i+1 ?>"><?= $i+1 ?></a>

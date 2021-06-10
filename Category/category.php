@@ -59,6 +59,7 @@ if (isset($_GET['pricing'])) {
     <link rel="stylesheet" type="text/css" href="../Includes/header.css">
     <link rel="stylesheet" type="text/css" href="../Includes/footer.css">
     <link rel="stylesheet" type="text/css" href="category.css">
+    <link rel="stylesheet" href="../Includes/box.css">
 
 </head>
 <body>
@@ -67,8 +68,10 @@ if (isset($_GET['pricing'])) {
 <div class="cover" style="background-image: url('../images/<?= $category['name'] ?>.jpg'">
     <div class="overlay"></div>
     <?php include("../Includes//header.php");?>
-    <h1 class="h1"><?= $category['name'] ?></h1>
-    <hr class="line1">
+    <div class="cat-type">
+        <h1 class="h1"><?= $category['name'] ?></h1>
+        <hr class="line1">
+    </div>
 </div>
 
 
@@ -79,7 +82,7 @@ if (isset($_GET['pricing'])) {
 </form>
 <?php if ($category['name'] === "Catering"): ?>
 
-    <div class="content">
+    <div class="filter">
         <div class="subtype">
 
             <h2>Subtype</h2>
@@ -107,7 +110,7 @@ if (isset($_GET['pricing'])) {
 
 <?php endif; ?>
 
-    <div class="contents">
+    <div class="content">
         <?php while ($row = mysqli_fetch_assoc($objectQuery)): ?>
             <div class="box" onClick="location.href='../Object/object.php?object=<?= $row['oid']; ?>'" style="cursor:pointer;">
                 <img class="object-image" src="../images/ObjectImages/<?php if ($row['image']) echo $row['image']; else echo "default.jpg"; ?>" alt="Picture">

@@ -4,13 +4,21 @@
     box-sizing: border-box;
 }
 
-header{
+#hdr {
     background-color: #34262B;
 }
 
 .wrapper{
     width: 1500px;
     margin: 0 auto;
+}
+
+a:hover{
+    color: #000000;
+}
+
+.responsive-table{
+    overflow: auto;
 }
 
 .second-nav{
@@ -23,7 +31,7 @@ form{
 
 .search-bar{
     background: #FFFFFF;
-    width: 100%;
+    width: 90%;
     height: 50px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
@@ -83,3 +91,18 @@ table, td, th{
 .pagination a:hover:not(.active) {
     background-color: #ddd;
 }
+
+@media (max-width: 1500px) {
+    .wrapper, .search-bar{
+        width: 100%;
+    }
+    .addObjectBtn{
+        display: inline-block;
+        margin: 10px 0;
+    }
+    .responsive-table, .second-nav{
+        margin: 10px;
+    }
+
+}
+

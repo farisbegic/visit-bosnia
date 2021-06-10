@@ -11,6 +11,10 @@
     height: 80vh;
 }
 
+a:hover{
+    color: #FFFFFF;
+}
+
 .overlay {
     position: absolute;
     z-index: 0;

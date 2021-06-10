@@ -37,13 +37,15 @@ if ($_POST){
 <html lang="en">
 <head>
     <?php include("../Includes/head.php") ?>
-    <link rel="stylesheet" href="objects.css">
+    <link rel="stylesheet" href="../Includes/dashboard.css">
     <link rel="stylesheet" href="../Includes/header.css" type="text/css">
     <link rel="stylesheet" href="../Includes/footer.css" type="text/css">
     <title>Objects</title>
 </head>
 <body>
-    <?php include("../Includes/header.php");?>
+    <div id="hdr">
+        <?php include("../Includes/header.php"); ?>
+    </div>
 
     <div class="wrapper">
         <div class="second-nav">
@@ -52,26 +54,28 @@ if ($_POST){
             </form>
             <a href="../NewObject/newobject.php" class="addObjectBtn">Add Object</a>
         </div>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Street</th>
-                <th>E-Mail</th>
-                <th colspan="2">Options</th>
-            </tr>
-            <!--Query to fetch all objects and display their info-->
-            <?php while ($row = mysqli_fetch_assoc($query)): ?>
+        <div class="responsive-table">
+            <table>
                 <tr>
-                    <td><?= $row['name'] ?></td>
-                    <td><?= $row['phone'] ?></td>
-                    <td><?= $row['street'] ?></td>
-                    <td><?= $row['email'] ?></td>
-                    <td><a href="edit.php?id=<?= $row['oid']; ?>" class="icon"><i class="fas fa-pencil-alt"></i></a></td>
-                    <td><a href="delete.php?id=<?= $row['oid']; ?>" class="icon"><i class="fas fa-trash-alt"></i></a></td>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Street</th>
+                    <th>E-Mail</th>
+                    <th colspan="2">Options</th>
                 </tr>
-            <?php endwhile; ?>
-        </table>
+                <!--Query to fetch all objects and display their info-->
+                <?php while ($row = mysqli_fetch_assoc($query)): ?>
+                    <tr>
+                        <td><?= $row['name'] ?></td>
+                        <td><?= $row['phone'] ?></td>
+                        <td><?= $row['street'] ?></td>
+                        <td><?= $row['email'] ?></td>
+                        <td><a href="edit.php?id=<?= $row['oid']; ?>" class="icon"><i class="fas fa-pencil-alt"></i></a></td>
+                        <td><a href="delete.php?id=<?= $row['oid']; ?>" class="icon"><i class="fas fa-trash-alt"></i></a></td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
         <div class="pagination">
             <?php for ($i=0 ; $i<$pages ; $i++) :?>
                 <a href="objects.php?page=<?= $i+1 ?>"><?= $i+1 ?></a>

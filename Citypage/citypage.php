@@ -1,8 +1,7 @@
 <?php
     require("../dbase.php");
     $page = $_GET['page'] ?? 1;
-    $searchQuery = mysqli_query($conn, "SELECT o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM object o WHERE o.active = 1 LIMIT 0, 3");
-
+    $searchQuery = mysqli_query($conn, "SELECT * FROM top_10_places WHERE active = 1 LIMIT 0, 3");
     if ($_POST){
         $input = $_POST['searchInput'];
 
@@ -26,6 +25,7 @@
     <link rel="stylesheet" href="../Includes/header.css">
     <link rel="stylesheet" href="../Includes/footer.css">
     <link rel="stylesheet" href="citypage.css">
+    <link rel="stylesheet" href="../Includes/box.css">
 </head>
 <body>
 

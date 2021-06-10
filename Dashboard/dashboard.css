@@ -6,7 +6,7 @@
 
 /* Header */
 
-header{
+.hdr{
     background-color: #34262B;
 }
 
@@ -35,10 +35,16 @@ header{
 
 .number{
     font-size: 30px;
+    color: #000000;
+}
+
+a:hover{
+    color: #FFFFFF;
 }
 
 .type{
     font-size: 20px;
+    color: #000000;
 }
 
 .view-button{

@@ -22,15 +22,20 @@ body {
 }
 
 .line1 {
-    width: 50%;
+    width: 600px;
     position: relative;
+    color: #FFFFFF;
+    margin: 0 auto;
+}
+
+.cat-type{
+    padding: 70px 0;
     z-index: 1;
 }
 
 .h1 {
     position: relative;
-    z-index: 1;
-    margin-top: 4%;
+    margin: auto;
     font-family: Montserrat;
     text-transform: uppercase;
     text-align: center;
@@ -39,17 +44,11 @@ body {
     color: white;
 }
 
-
-.search {
-    padding: 20px 0;
-    width: 100%;
-}
-
 .mid .search input[type=text] {
     font-size: 15px;
     line-height: 18px;
     width: 74%;
-    padding: 20px;
+    padding: 23px;
     background: rgba(255, 255, 255, 0.9);
     border: 0.5px solid rgba(0, 0, 0, 0.3);
     color: rgba(0, 0, 0, 0.5);
@@ -62,7 +61,7 @@ body {
     background: #34262B;
     color: white;
     font-size: 17px;
-    border: 1px solid grey;
+    border: none;
 }
 
 .subtype-text {
@@ -74,17 +73,16 @@ dt {
     padding: 5px;
 }
 
-.content {
+.filter {
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
     padding: 20px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.35);
-    width: 100%;
 }
 
 form {
-    margin: 50px auto 20px;
+    margin: 50px 0;
 }
 
 h2, dl {
@@ -130,7 +128,7 @@ h2, dl {
     height: 200px;
 }
 
-.contents {
+.filters {
     margin: auto;
     width: 100%;
     display: flex;
@@ -165,6 +163,9 @@ i {
     transition: background-color .3s;
 }
 
+.title, .one-info{
+    margin: 0;
+}
 
 .pagination a.active {
     background-color: black;
@@ -191,77 +192,71 @@ i {
 
 @media (max-width: 1080px) {
 
-    .h1 {
-        margin-top: 10%;
-        font-size: 80px;
-    }
-
-    .search {
-        width: 100%;
-    }
-
-    .content {
-        display: block;
-        width: 100%;
-    }
-
-    .mid .search input[type=text] {
-        padding: 15px;
-        width: 65%;
-    }
-
-    .line {
-        width: 50px;
-    }
-
-    .mid .search button {
-        padding: 15px;
-        width: 33%;
-    }
-
-    .contents {
-        display: block;
-    }
-
-    .box {
-        margin: 20px auto;
-        width: 50%;
-    }
-
     .mid {
-        height: auto;
-    }
-
-    .contents {
-        width: auto;
-    }
-
-    .pagination {
-        margin-bottom: 5%;
         width: 100%;
+    }
+
+    .h1{
+        font-size: 70px;
+    }
+
+    form{
+        margin: 50px 10px;
+    }
+
+    .filter{
+        margin: 0 10px;
     }
 }
 
 @media (max-width: 740px) {
 
     .h1 {
-        font-size: 70px;
+        font-size: 50px;
+    }
+
+    .line1{
+        width: 450px;
     }
 
     .box {
         width: 100%;
     }
+}
 
+@media (max-width: 550px) {
+    .h1 {
+        font-size: 30px;
+    }
+
+    .line1{
+        width: 300px;
+    }
+
+    .cover, .overlay{
+        height: 50vh;
+    }
 }
 
 @media (max-width: 496px) {
-
-    .h1 {
-        font-size: 50px;
+    .filter{
+        flex-direction: column;
+        margin-bottom: 20px;
     }
 
     a {
         display: block;
         text-align: center;
+    }
+}
+
+@media (max-width: 440px) {
+    .mid .search input[type=text]{
+        width: 100%;
+    }
+
+    .mid .search button{
+        margin: 10px 0;
+        width: auto;
     }
 }

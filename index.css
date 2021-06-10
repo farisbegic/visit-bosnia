@@ -109,7 +109,7 @@ hr {
 .explore-btn {
     display: inline-block;
     text-decoration: none;
-    color: #ffff;
+    color: #ffff; !important;
     border: 1px solid #FFD99F;
     padding: 15px 25px;
     border-radius: 3px;
@@ -119,6 +119,7 @@ hr {
 .explore-btn:hover {
     background-color: #FFD99F;
     transition: all 0.5s ease-in-out;
+    color: #ffff; !important;
 }
 
 /* Section 3 */

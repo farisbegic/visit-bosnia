@@ -42,8 +42,9 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <?php include("../Includes/header.php"); ?>
-
+    <div class="hdr">
+        <?php include("../Includes/header.php"); ?>
+    </div>
     <div class="wrapper">
 
         <div class="boxing">
@@ -81,9 +82,17 @@
         <div class="boxing">
             <div class="text-info">
                 <p class="number"><?= $numOfActive ?></p>
-                <p class="type">Active Users</p>
+                <p class="type">Most Active Users</p>
             </div>
             <a class="view-button" href="../MostActiveUsers/mostactiveusers.php">Active Users</a>
+        </div>
+
+        <div class="boxing">
+            <div class="text-info">
+                <p class="number"><?= $numOfUsers ?></p>
+                <p class="type">Recently registered</p>
+            </div>
+            <a class="view-button" href="../Users/users.php">View Registered</a>
         </div>
     </div>
 

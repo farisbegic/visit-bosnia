@@ -10,6 +10,23 @@ html, body {
 height:100%
 }
 
+header {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    display: flex;
+}
+
+header h1 a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+a:hover{
+    color: #FFFFFF;
+}
 
 form {
     margin: 11% auto;
@@ -59,7 +76,7 @@ form input:focus {
     color: white;
 }
 
-form button {
+.submit-btn {
     border: 0;
     color: white;
     width: 100%;
@@ -71,6 +88,8 @@ form button {
     font-family: Montserrat;
     font-size: 18px;
     font-weight: bolder;
+    text-align: center;
+    text-decoration: none;
 }
 
 @media (max-width: 800px) {

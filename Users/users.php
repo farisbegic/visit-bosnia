@@ -39,13 +39,20 @@ if ($_POST){
 <html lang="en">
 <head>
     <?php include("../Includes/head.php") ?>
-    <link rel="stylesheet" href="users.css">
+    <link rel="stylesheet" href="../Includes/dashboard.css">
     <link rel="stylesheet" href="../Includes/header.css" type="text/css">
     <link rel="stylesheet" href="../Includes/footer.css" type="text/css">
     <title>Objects</title>
+    <style>
+        .search-bar{
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-<?php include("../Includes/header.php");?>
+<div id="hdr">
+    <?php include("../Includes/header.php"); ?>
+</div>
 
 <div class="wrapper">
     <div class="second-nav">
@@ -53,30 +60,32 @@ if ($_POST){
             <input name="search" class="search-bar" type="text" placeholder="Search user by name..">
         </form>
     </div>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>E-Mail</th>
-            <th>Phone</th>
-            <th>Date Of Birth</th>
-            <th>Username</th>
-            <th colspan="2">Options</th>
-        </tr>
-        <?php while ($row = mysqli_fetch_assoc($usersResult)): ?>
+    <div class="responsive-table">
+        <table>
             <tr>
-                <td><?= $row['uid'] ?></td>
-                <td><?= $row['name'] ?></td>
-                <td><?= $row['surname'] ?></td>
-                <td><?= $row['email'] ?></td>
-                <td><?= $row['phone'] ?></td>
-                <td><?= date('F j, Y',strtotime($row['dob'])); ?></td>
-                <td><?= $row['username'] ?></td>
-                <td><a href="delete.php?id=<?= $row['uid'] ?>" class="icon"><i class="fas fa-trash-alt"></i></a></td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>E-Mail</th>
+                <th>Phone</th>
+                <th>Date Of Birth</th>
+                <th>Username</th>
+                <th colspan="2">Options</th>
             </tr>
-        <?php endwhile; ?>
-    </table>
+            <?php while ($row = mysqli_fetch_assoc($usersResult)): ?>
+                <tr>
+                    <td><?= $row['uid'] ?></td>
+                    <td><?= $row['name'] ?></td>
+                    <td><?= $row['surname'] ?></td>
+                    <td><?= $row['email'] ?></td>
+                    <td><?= $row['phone'] ?></td>
+                    <td><?= date('F j, Y',strtotime($row['dob'])); ?></td>
+                    <td><?= $row['username'] ?></td>
+                    <td><a href="delete.php?id=<?= $row['uid'] ?>" class="icon"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            <?php endwhile; ?>
+        </table>
+    </div>
     <div class="pagination">
         <?php for ($i=0 ; $i<$pages ; $i++) :?>
             <a href="users.php?page=<?= $i+1 ?>"><?= $i+1 ?></a>

@@ -20,6 +20,24 @@ hr {
     margin: 10px 0 10px 0;
 }
 
+header {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    display: flex;
+}
+
+header h1 a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+a:hover{
+    color: #FFFFFF;
+}
+
 form p {
     color: white;
 }
