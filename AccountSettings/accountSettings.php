@@ -31,7 +31,7 @@
         $checkEmail = mysqli_query($conn, "SELECT * FROM user u WHERE u.email = '$email'");// Check for email duplicates
 
         if (mysqli_num_rows($checkEmail) === 1) {
-            $updateCredentials = mysqli_query($conn, "UPDATE user SET email='$email', password='$password', name='$name', surname='$surname', image='$imgName' WHERE uid={$userID}");
+            $updateCredentials = mysqli_query($conn, "UPDATE user SET email='$email', password = sha1('{$password}'), name='$name', surname='$surname', image='$imgName' WHERE uid={$userID}");
         } else {
             die("User with the same email already exists");
         }

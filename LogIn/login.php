@@ -18,7 +18,7 @@ if ($_POST){
         die("You need to set username/password");
     }
 
-    $checkCredentials = mysqli_query($conn,"SELECT u.uid, u.email, u.password, u.admin, u.active FROM user u WHERE email = '{$email}' AND password= '{$password}'");
+    $checkCredentials = mysqli_query($conn,"SELECT u.uid, u.email, u.password, u.admin, u.active FROM user u WHERE email = '{$email}' AND password = sha1('{$password}')");
     $result = mysqli_fetch_assoc($checkCredentials);
 
     if (mysqli_num_rows($checkCredentials) == 1 && $result['active']) {

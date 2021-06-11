@@ -42,12 +42,12 @@ if ($_POST) {
 
     // Check if user exits
 
-    $userQuery = mysqli_query($conn, "SELECT uid FROM user WHERE name = '{$name}' AND surname = '{$surname}' AND email = '{$email}' AND phone = '{$phone}' AND dob = '{$dob}' AND gender = '{$gender}' AND username = '{$username}' AND password = '{$password}' AND city = '{$city}'");
+    $userQuery = mysqli_query($conn, "SELECT uid FROM user WHERE name = '{$name}' AND surname = '{$surname}' AND email = '{$email}' AND phone = '{$phone}' AND dob = '{$dob}' AND gender = '{$gender}' AND username = '{$username}' AND password = sha1('{$password}') AND city = '{$city}'");
     if (mysqli_num_rows($userQuery) == 1){
         $user = mysqli_fetch_assoc($userQuery);
         mysqli_query($conn,"UPDATE user SET active = 1 WHERE uid = '{$user['uid']}'");
     } else{
-        $insert = mysqli_query($conn, "INSERT INTO user(name, surname, email, phone, dob, gender, username, password, city, image) VALUES ('{$name}', '{$surname}', '{$email}', '{$phone}', '{$dob}', '{$gender}', '{$username}', '{$password}', '{$city}', '{$imgName}')");
+        $insert = mysqli_query($conn, "INSERT INTO user(name, surname, email, phone, dob, gender, username, password, city, image) VALUES ('{$name}', '{$surname}', '{$email}', '{$phone}', '{$dob}', '{$gender}', '{$username}', sha1('{$password}'), '{$city}', '{$imgName}')");
     }
 
     header("Location: ../LogIn/login.php");
