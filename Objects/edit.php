@@ -52,9 +52,9 @@ if ($_POST){
     $isPetFriendly = isset($_POST['isPetFriendly'][0]) ? 1 : 0;
     $isHalal = isset($_POST['isHalal'][0]) ? 1 : 0;
     $city = $_POST['city'];
-    $imgName = '';
+    $imgName = $object['image'];
 
-    if (isset($_FILES['image']) && $_FILES['image']){
+    if (isset($_FILES['image']) && $_FILES['image']['name']){
         $imgName = $_FILES['image']['name'];
         move_uploaded_file($_FILES['image']['tmp_name'], "../images/ObjectImages/" . $imgName);
     }

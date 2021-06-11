@@ -37,8 +37,8 @@ $noOfFavorites = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as tota
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../Includes/header.css">
     <link rel="stylesheet" type="text/css" href="../Includes/footer.css">
-    <link rel="stylesheet" type="text/css" href="profile.css">
     <link rel="stylesheet" href="../Includes/box.css">
+    <link rel="stylesheet" type="text/css" href="profile.css">
 </head>
 <body>
 

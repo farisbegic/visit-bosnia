@@ -74,12 +74,16 @@ main {
     padding: 0 6px;
 }
 
+.one-info a{
+    color: red;
+}
+
 .content{
     padding: 50px 0;
 }
 
 a:hover{
-    color: red;
+    color: red; !important;
 }
 
 i {

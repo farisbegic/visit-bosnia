@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2021 at 10:20 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Generation Time: Jun 10, 2021 at 04:23 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,52 @@ SET time_zone = "+00:00";
 --
 -- Database: `visitbosnia`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ClearAllUserData` ()  BEGIN
+    DELETE FROM userratings where 1;
+    DELETE FROM userfavorites where 1;
+    DELETE FROM user where 1;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `user_ratings` (`p_oid` INT)  BEGIN
+    UPDATE object SET averagerating = (SELECT AVG(rating) FROM userratings WHERE oid = p_oid) WHERE oid = p_oid;
+END$$
+
+--
+-- Functions
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `GetObjectName` (`p_id` INT) RETURNS VARCHAR(255) CHARSET utf8mb4 BEGIN
+    declare ret varchar(255);
+    select name into ret FROM object where oid = p_id;
+    return ret;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `GetUserName` (`p_id` INT) RETURNS VARCHAR(255) CHARSET utf8mb4 BEGIN
+    declare ret varchar(255);
+    select concat(name, ' ', surname) into ret FROM user where uid = p_id;
+    return ret;
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `active_users`
+-- (See below for the actual view)
+--
+CREATE TABLE `active_users` (
+`uid` int(11)
+,`name` varchar(100)
+,`surname` varchar(100)
+,`username` varchar(30)
+,`email` varchar(255)
+,`startdate` date
+);
 
 -- --------------------------------------------------------
 
@@ -38,13 +84,13 @@ CREATE TABLE `city` (
 --
 
 INSERT INTO `city` (`cid`, `name`, `Country`) VALUES
-(8, 'Sarajevo', 1),
-(9, 'Mostar', 1),
-(10, 'Zenica', 1),
-(11, 'Travnik', 1),
-(12, 'Tuzla', 1),
-(13, 'Banja Luka', 1),
-(14, 'Bihac', 1);
+(24, 'Visoko', 1),
+(27, 'Sarajevo', 1),
+(28, 'Zenica', 1),
+(29, 'Mostar', 1),
+(30, 'Tuzla', 1),
+(31, 'Travnik', 1),
+(32, 'Jajce', 1);
 
 -- --------------------------------------------------------
 
@@ -63,6 +109,30 @@ CREATE TABLE `country` (
 
 INSERT INTO `country` (`cid`, `name`) VALUES
 (1, 'Bosnia and Herzegovina');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `fav_objects`
+-- (See below for the actual view)
+--
+CREATE TABLE `fav_objects` (
+`objectid` int(11)
+,`object` varchar(255)
+,`favnum` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `most_active_users`
+-- (See below for the actual view)
+--
+CREATE TABLE `most_active_users` (
+`user` int(11)
+,`GetUserName(user)` varchar(255)
+,`favno` bigint(21)
+);
 
 -- --------------------------------------------------------
 
@@ -88,22 +158,19 @@ CREATE TABLE `object` (
   `isPetFriendly` tinyint(1) DEFAULT 0,
   `city` int(11) NOT NULL,
   `isHalal` tinyint(1) DEFAULT 0,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) NOT NULL,
+  `averagerating` decimal(10,0) DEFAULT 0,
+  `active` bit(1) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `object`
 --
 
-INSERT INTO `object` (`oid`, `name`, `street`, `phone`, `opening_hours`, `closing_hours`, `pricing`, `webpage`, `email`, `start_day`, `close_day`, `isVegan`, `description`, `isGlutenFree`, `isPetFriendly`, `city`, `isHalal`, `image`) VALUES
-(25, 'Klopa', 'Trg Fra Grge Marti?a 4', '033 223-633', '09:00:00', '23:00:00', 3, 'www.klopa.ba', 'klopa@gmail.com', 'monday', 'sunday', 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ', 0, 1, 8, 0, 'klopa.png'),
-(26, 'Avlija', 'Avde Sumbula 2', '033/459-243', '09:00:00', '23:00:00', 2, 'www.avlija.ba', 'avlija@gmail.com', 'monday', 'wednesday', 1, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ', 0, 1, 8, 0, 'avlija.png'),
-(27, '4 sobe gospo?e Safije', ' ?ekaluša 61', '033/459-243', '07:00:00', '23:00:00', 2, 'www.safija.ba', 'safija@gmail.com', 'monday', 'thursday', 1, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.', 0, 1, 8, 0, 'safija.png'),
-(29, 'Hotel Hollywood', 'Dr. Mustafe Pintola 23', '033 773-100', '00:00:00', '23:59:00', 2, 'www.hotelhollywood.com', 'holywood@gmail.com', 'monday', 'sunday', 0, '123', 0, 0, 8, 0, 'hollywoog.png'),
-(30, 'Metropolis', 'Maršala Tita 21', '033 203-315', '07:00:00', '22:00:00', 2, 'www.metropolis.com', 'metropolis@gmail.com', 'monday', 'sunday', 1, 'A place to drink a coffee.', 0, 1, 8, 0, 'metropolis.png'),
-(31, 'Chipas', 'Muhameda 16', '062/666-777', '06:00:00', '23:00:00', 1, 'www.chipas.com', 'chipas@gmail.com', 'monday', 'sunday', 0, '123', 0, 0, 9, 0, 'chipas.jpg'),
-(32, 'Papermoon', 'Antuna Simica 23', '062/425-123', '09:00:00', '23:00:00', 2, 'www.papermoon.com', 'pm@gmail.com', 'monday', 'sunday', 0, '1234', 1, 0, 8, 1, 'papermoon.png'),
-(33, 'Espresso Lab', 'Trg Fra Grge Marti?a 4', '062/425-123', '07:00:00', '21:00:00', 2, 'www.espressol.com', 'espressol@gmail.com', 'monday', 'sunday', 0, 'Nice place to drink coffee.', 0, 0, 8, 0, 'espresso.png');
+INSERT INTO `object` (`oid`, `name`, `street`, `phone`, `opening_hours`, `closing_hours`, `pricing`, `webpage`, `email`, `start_day`, `close_day`, `isVegan`, `description`, `isGlutenFree`, `isPetFriendly`, `city`, `isHalal`, `image`, `averagerating`, `active`) VALUES
+(41, 'Chipas', 'Kolodvorska 1', '062/459-199', '07:00:00', '12:00:00', 1, 'www.chipas.com', 'chipas@gmail.com', 'monday', 'sunday', 1, '123', 0, 1, 24, 0, 'chipas.jpg', '3', b'0'),
+(43, 'Flying', 'Kolodvorska 3', '062/459-199', '07:00:00', '23:00:00', 1, 'www.flying.com', 'flying@gmail.com', 'monday', 'sunday', 0, '123', 0, 0, 24, 0, '2.jpg', NULL, b'0'),
+(45, 'Metropolis SCC', 'MarÅ¡ala Tita 21', '033 203-315', '07:00:00', '23:00:00', 2, 'www.metropolis.com', 'metropolis@gmail.com', 'monday', 'sunday', 1, 'Nice place to eat.', 1, 1, 27, 1, 'metropolis.png', '0', b'1');
 
 -- --------------------------------------------------------
 
@@ -122,14 +189,29 @@ CREATE TABLE `objecttype` (
 --
 
 INSERT INTO `objecttype` (`oid`, `type`, `object`) VALUES
-(27, 5, 25),
-(28, 1, 26),
-(29, 1, 27),
-(31, 2, 29),
-(32, 1, 30),
-(33, 1, 31),
-(34, 1, 32),
-(35, 6, 33);
+(42, 1, 41),
+(44, 3, 43),
+(46, 1, 45);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `top_10_places`
+-- (See below for the actual view)
+--
+CREATE TABLE `top_10_places` (
+`oid` int(11)
+,`name` varchar(255)
+,`street` varchar(255)
+,`start_day` varchar(20)
+,`close_day` varchar(20)
+,`opening_hours` time
+,`closing_hours` time
+,`phone` varchar(20)
+,`webpage` varchar(255)
+,`image` varchar(255)
+,`active` bit(1)
+);
 
 -- --------------------------------------------------------
 
@@ -178,16 +260,38 @@ CREATE TABLE `user` (
   `active` bit(1) NOT NULL DEFAULT b'1',
   `password` varchar(50) NOT NULL,
   `city` int(11) NOT NULL,
-  `isadmin` tinyint(1) NOT NULL DEFAULT 0
+  `admin` bit(1) NOT NULL DEFAULT b'0',
+  `startdate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`uid`, `name`, `surname`, `email`, `phone`, `dob`, `image`, `gender`, `username`, `active`, `password`, `city`, `isadmin`) VALUES
-(5, 'Faris', 'Begic', 'fabegic@gmail.com', '062/459-199', '2021-05-05', '', 'male', 'begicfa', b'1', 'faris1', 8, 1),
-(6, 'Azra', 'Kurtic', 'azrak@gmail.com', '062/425-123', '2021-05-11', 'azra.png', 'female', 'azrak', b'1', 'azra123', 8, 0);
+INSERT INTO `user` (`uid`, `name`, `surname`, `email`, `phone`, `dob`, `image`, `gender`, `username`, `active`, `password`, `city`, `admin`, `startdate`) VALUES
+(26, 'Azra', 'Kurtic', 'azrak@gmail.com', '062/459-199', '2021-06-01', 'fsd.png', 'male', 'azrak', b'1', 'azra123', 24, b'1', '2021-06-08'),
+(28, 'Adna', 'Salkovic', 'adnasalk@gmail.com', '062/459-199', '2021-06-02', '', 'female', 'adnasalk', b'1', 'adna123', 24, b'0', '2021-06-10'),
+(29, 'Mujo', 'Hamzic', 'mujo@gmail.com', '062/459-199', '2021-06-03', '', 'male', 'mujohamz', b'1', 'mujo123', 24, b'0', '2021-06-10');
+
+--
+-- Triggers `user`
+--
+DELIMITER $$
+CREATE TRIGGER `date_check` BEFORE INSERT ON `user` FOR EACH ROW BEGIN
+    DECLARE msg varchar(255);
+    IF NEW.dob > CURDATE()  THEN
+        SET msg = 'INVALID DATE, Date from future';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg;
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `user_start_date_trg` BEFORE INSERT ON `user` FOR EACH ROW BEGIN
+    set NEW.startdate = SYSDATE();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -198,21 +302,26 @@ INSERT INTO `user` (`uid`, `name`, `surname`, `email`, `phone`, `dob`, `image`, 
 CREATE TABLE `userfavorites` (
   `fid` int(11) NOT NULL,
   `user` int(11) DEFAULT NULL,
-  `object` int(11) DEFAULT NULL
+  `object` int(11) DEFAULT NULL,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userfavorites`
 --
 
-INSERT INTO `userfavorites` (`fid`, `user`, `object`) VALUES
-(6, 5, 26),
-(7, 6, 27),
-(8, 5, 29),
-(9, 5, 30),
-(10, 5, 27),
-(11, 6, 25),
-(12, 5, 25);
+INSERT INTO `userfavorites` (`fid`, `user`, `object`, `date`) VALUES
+(26, 26, 41, '2021-06-08');
+
+--
+-- Triggers `userfavorites`
+--
+DELIMITER $$
+CREATE TRIGGER `user_fav_date_trg` BEFORE INSERT ON `userfavorites` FOR EACH ROW BEGIN
+    set NEW.date = SYSDATE();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -226,6 +335,65 @@ CREATE TABLE `userratings` (
   `object` int(11) DEFAULT NULL,
   `rating` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `userratings`
+--
+
+INSERT INTO `userratings` (`uid`, `user`, `object`, `rating`) VALUES
+(43, 26, 41, 5);
+
+--
+-- Triggers `userratings`
+--
+DELIMITER $$
+CREATE TRIGGER `user_rating_ins_trg` AFTER INSERT ON `userratings` FOR EACH ROW BEGIN
+    UPDATE object SET averagerating = (SELECT AVG(rating) FROM userratings WHERE oid = object);
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `user_rating_upd_trg` AFTER UPDATE ON `userratings` FOR EACH ROW BEGIN
+    UPDATE object SET averagerating = (SELECT AVG(rating) FROM userratings WHERE oid = object);
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `active_users`
+--
+DROP TABLE IF EXISTS `active_users`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `active_users`  AS SELECT `user`.`uid` AS `uid`, `user`.`name` AS `name`, `user`.`surname` AS `surname`, `user`.`username` AS `username`, `user`.`email` AS `email`, `user`.`startdate` AS `startdate` FROM `user` WHERE `user`.`active` = 1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `fav_objects`
+--
+DROP TABLE IF EXISTS `fav_objects`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `fav_objects`  AS SELECT `uf`.`object` AS `objectid`, `o`.`name` AS `object`, count(`uf`.`object`) AS `favnum` FROM ((`object` `o` join `user` `u`) join `userfavorites` `uf`) WHERE `o`.`oid` = `uf`.`object` AND `u`.`uid` = `uf`.`user` AND (NULL is null OR cast(`u`.`startdate` as date) >= NULL) AND (NULL is null OR cast(`u`.`startdate` as date) <= NULL) AND `o`.`active` = 1 GROUP BY `uf`.`object` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `most_active_users`
+--
+DROP TABLE IF EXISTS `most_active_users`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `most_active_users`  AS SELECT `userratings`.`user` AS `user`, `GetUserName`(`userratings`.`user`) AS `GetUserName(user)`, count(0) AS `favno` FROM (`userratings` join `user`) WHERE `user`.`uid` = `userratings`.`user` AND `user`.`active` = 1 GROUP BY `GetUserName`(`userratings`.`user`) ORDER BY 2 DESC ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `top_10_places`
+--
+DROP TABLE IF EXISTS `top_10_places`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top_10_places`  AS SELECT `o`.`oid` AS `oid`, `o`.`name` AS `name`, `o`.`street` AS `street`, `o`.`start_day` AS `start_day`, `o`.`close_day` AS `close_day`, `o`.`opening_hours` AS `opening_hours`, `o`.`closing_hours` AS `closing_hours`, `o`.`phone` AS `phone`, `o`.`webpage` AS `webpage`, `o`.`image` AS `image`, `o`.`active` AS `active` FROM (`object` `o` join `city` `c`) WHERE `o`.`city` = `c`.`cid` AND `o`.`active` = 1 ORDER BY `o`.`averagerating` DESC LIMIT 0, 6 ;
 
 --
 -- Indexes for dumped tables
@@ -249,7 +417,9 @@ ALTER TABLE `country`
 --
 ALTER TABLE `object`
   ADD PRIMARY KEY (`oid`),
-  ADD KEY `City` (`city`);
+  ADD KEY `City` (`city`),
+  ADD KEY `obj_name_ind` (`name`),
+  ADD KEY `obj_pricing_ind` (`pricing`);
 
 --
 -- Indexes for table `objecttype`
@@ -271,7 +441,9 @@ ALTER TABLE `type`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`uid`),
-  ADD KEY `user_city_cid_fk` (`city`);
+  ADD KEY `user_city_cid_fk` (`city`),
+  ADD KEY `user_name_ind` (`name`),
+  ADD KEY `user_surname_ind` (`surname`);
 
 --
 -- Indexes for table `userfavorites`
@@ -286,6 +458,7 @@ ALTER TABLE `userfavorites`
 --
 ALTER TABLE `userratings`
   ADD PRIMARY KEY (`uid`),
+  ADD UNIQUE KEY `unq_rating` (`user`,`object`),
   ADD KEY `UserRatings_object_oid_fk` (`object`),
   ADD KEY `UserRatings_user_uid_fk` (`user`);
 
@@ -297,7 +470,7 @@ ALTER TABLE `userratings`
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `country`
@@ -309,13 +482,13 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `object`
 --
 ALTER TABLE `object`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `objecttype`
 --
 ALTER TABLE `objecttype`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `type`
@@ -327,19 +500,19 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `userfavorites`
 --
 ALTER TABLE `userfavorites`
-  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `userratings`
 --
 ALTER TABLE `userratings`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Constraints for dumped tables
@@ -349,46 +522,46 @@ ALTER TABLE `userratings`
 -- Constraints for table `city`
 --
 ALTER TABLE `city`
-  ADD CONSTRAINT `city_country_cid_fk` FOREIGN KEY (`Country`) REFERENCES `country` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `city_country_cid_fk` FOREIGN KEY (`Country`) REFERENCES `country` (`cid`);
 
 --
 -- Constraints for table `object`
 --
 ALTER TABLE `object`
-  ADD CONSTRAINT `City` FOREIGN KEY (`city`) REFERENCES `city` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `City` FOREIGN KEY (`city`) REFERENCES `city` (`cid`);
 
 --
 -- Constraints for table `objecttype`
 --
 ALTER TABLE `objecttype`
-  ADD CONSTRAINT `Object` FOREIGN KEY (`object`) REFERENCES `object` (`oid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Type` FOREIGN KEY (`type`) REFERENCES `type` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Object` FOREIGN KEY (`object`) REFERENCES `object` (`oid`),
+  ADD CONSTRAINT `Type` FOREIGN KEY (`type`) REFERENCES `type` (`tid`);
 
 --
 -- Constraints for table `type`
 --
 ALTER TABLE `type`
-  ADD CONSTRAINT `Supertype` FOREIGN KEY (`supertype`) REFERENCES `type` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Supertype` FOREIGN KEY (`supertype`) REFERENCES `type` (`tid`);
 
 --
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_city_cid_fk` FOREIGN KEY (`city`) REFERENCES `city` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_city_cid_fk` FOREIGN KEY (`city`) REFERENCES `city` (`cid`);
 
 --
 -- Constraints for table `userfavorites`
 --
 ALTER TABLE `userfavorites`
-  ADD CONSTRAINT `UserFavorites_object_oid_fk` FOREIGN KEY (`object`) REFERENCES `object` (`oid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `UserFavorites_user_uid_fk` FOREIGN KEY (`user`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `UserFavorites_object_oid_fk` FOREIGN KEY (`object`) REFERENCES `object` (`oid`),
+  ADD CONSTRAINT `UserFavorites_user_uid_fk` FOREIGN KEY (`user`) REFERENCES `user` (`uid`);
 
 --
 -- Constraints for table `userratings`
 --
 ALTER TABLE `userratings`
-  ADD CONSTRAINT `UserRatings_object_oid_fk` FOREIGN KEY (`object`) REFERENCES `object` (`oid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `UserRatings_user_uid_fk` FOREIGN KEY (`user`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `UserRatings_object_oid_fk` FOREIGN KEY (`object`) REFERENCES `object` (`oid`),
+  ADD CONSTRAINT `UserRatings_user_uid_fk` FOREIGN KEY (`user`) REFERENCES `user` (`uid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
