@@ -14,13 +14,14 @@
 
     $user = mysqli_fetch_assoc($userResults);
 
+    // Fetch old image  in case user doesn't set one
     $imgName = $user['image'];
 
     if ($_POST){
         $email = $_POST['email'];
-        $password = $_POST['password'];
         $name = $_POST['name'];
         $surname = $_POST['surname'];
+        $password = $_POST['password'];
 
         if (isset($_FILES['image']) && $_FILES['image']['name']){
             $imgName = $_FILES['image']['name'];
@@ -31,7 +32,8 @@
         $checkEmail = mysqli_query($conn, "SELECT * FROM user u WHERE u.email = '$email'");// Check for email duplicates
 
         if (mysqli_num_rows($checkEmail) === 1) {
-            $updateCredentials = mysqli_query($conn, "UPDATE user SET email='$email', password = sha1('{$password}'), name='$name', surname='$surname', image='$imgName' WHERE uid={$userID}");
+            if ($password != '') $updateCredentials = mysqli_query($conn, "UPDATE user SET email='$email', password = sha1('{$password}'), name='$name', surname='$surname', image='$imgName' WHERE uid={$userID}");
+            else $updateCredentials = mysqli_query($conn, "UPDATE user SET email='$email', name='$name', surname='$surname', image='$imgName' WHERE uid={$userID}");
         } else {
             die("User with the same email already exists");
         }
@@ -60,7 +62,7 @@
             <input type="text" name="name" placeholder="Name" value="<?= $user['name'] ?? "" ?>">
             <input type="text" name="surname" placeholder="Surname" value="<?= $user['surname'] ?? "" ?>">
             <input type="text" name="email" placeholder="E-mail" value="<?= $user['email'] ?? "" ?>">
-            <input id="password" type="password" name="password" placeholder="Password" value="<?= $user['password'] ?? "" ?>">
+            <input id="password" type="password" name="password" placeholder="Change Password"">
             <input type="file" name="image" value="../images/ <?= $user['image'] ?>">
             <button type="submit">Save Changes</button>
         </form>

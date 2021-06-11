@@ -28,7 +28,7 @@ if ($objectRating) {
 
 // Fetch an object with given ID
 
-$objectQuery = mysqli_query($conn, "SELECT o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.description, o.image, o.averagerating FROM object o WHERE o.oid = '$objectID' AND active = 1");
+$objectQuery = mysqli_query($conn, "SELECT o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.description, o.image, o.averagerating, isVegan, isGlutenFree, isPetFriendly, isHalal FROM object o WHERE o.oid = '$objectID' AND active = 1");
 
 $object = mysqli_fetch_assoc($objectQuery);
 
@@ -78,11 +78,19 @@ $object = mysqli_fetch_assoc($objectQuery);
                 </div>
                 <div class="object-rating">
                     <input type="hidden" value="<?= $object['averagerating'] ?>" id="avg">
-                    <i class="far fa-star info-icon"></i>
-                    <i class="far fa-star info-icon"></i>
-                    <i class="far fa-star info-icon"></i>
-                    <i class="far fa-star info-icon"></i>
-                    <i class="far fa-star info-icon"></i>
+                    <div class="rating">
+                        <i class="far fa-star info-icon"></i>
+                        <i class="far fa-star info-icon"></i>
+                        <i class="far fa-star info-icon"></i>
+                        <i class="far fa-star info-icon"></i>
+                        <i class="far fa-star info-icon"></i>
+                    </div>
+                    <div class="details">
+                        <?php if ($object['isVegan'] == 1): ?><i class="fas fa-leaf info-icon"></i> <?php endif; ?>
+                        <?php if ($object['isGlutenFree'] == 1): ?><i class="fas fa-bread-slice info-icon"></i> <?php endif; ?>
+                        <?php if ($object['isPetFriendly'] == 1): ?><i class="fas fa-paw info-icon"></i> <?php endif; ?>
+                        <?php if ($object['isHalal'] == 1): ?><i class="fas fa-bacon info-icon"></i> <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>

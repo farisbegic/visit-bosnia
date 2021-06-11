@@ -38,6 +38,8 @@ a:hover{
 
 .object-rating {
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 a i:hover{

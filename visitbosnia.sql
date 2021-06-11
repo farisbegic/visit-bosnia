@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2021 at 04:23 PM
+-- Generation Time: Jun 11, 2021 at 09:48 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.5
 
@@ -159,7 +159,7 @@ CREATE TABLE `object` (
   `city` int(11) NOT NULL,
   `isHalal` tinyint(1) DEFAULT 0,
   `image` varchar(255) NOT NULL,
-  `averagerating` decimal(10,0) DEFAULT 0,
+  `averagerating` double DEFAULT NULL,
   `active` bit(1) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -168,9 +168,9 @@ CREATE TABLE `object` (
 --
 
 INSERT INTO `object` (`oid`, `name`, `street`, `phone`, `opening_hours`, `closing_hours`, `pricing`, `webpage`, `email`, `start_day`, `close_day`, `isVegan`, `description`, `isGlutenFree`, `isPetFriendly`, `city`, `isHalal`, `image`, `averagerating`, `active`) VALUES
-(41, 'Chipas', 'Kolodvorska 1', '062/459-199', '07:00:00', '12:00:00', 1, 'www.chipas.com', 'chipas@gmail.com', 'monday', 'sunday', 1, '123', 0, 1, 24, 0, 'chipas.jpg', '3', b'0'),
-(43, 'Flying', 'Kolodvorska 3', '062/459-199', '07:00:00', '23:00:00', 1, 'www.flying.com', 'flying@gmail.com', 'monday', 'sunday', 0, '123', 0, 0, 24, 0, '2.jpg', NULL, b'0'),
-(45, 'Metropolis SCC', 'MarÅ¡ala Tita 21', '033 203-315', '07:00:00', '23:00:00', 2, 'www.metropolis.com', 'metropolis@gmail.com', 'monday', 'sunday', 1, 'Nice place to eat.', 1, 1, 27, 1, 'metropolis.png', '0', b'1');
+(41, 'Chipas', 'Kolodvorska 1', '062/459-199', '07:00:00', '12:00:00', 1, 'www.chipas.com', 'chipas@gmail.com', 'monday', 'sunday', 1, '123', 0, 1, 24, 0, 'chipas.jpg', NULL, b'1'),
+(43, 'Flying', 'Kolodvorska 3', '062/459-199', '07:00:00', '23:00:00', 1, 'www.flying.com', 'flying@gmail.com', 'monday', 'sunday', 0, '123', 0, 0, 24, 0, '2.jpg', NULL, b'1'),
+(45, 'Metropolis SCC', 'MarÅ¡ala Tita 21', '033 203-315', '07:00:00', '23:00:00', 2, 'www.metropolis.com', 'metropolis@gmail.com', 'monday', 'sunday', 1, 'Nice place to eat.', 1, 1, 27, 1, 'metropolis.png', 5, b'1');
 
 -- --------------------------------------------------------
 
@@ -269,9 +269,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`uid`, `name`, `surname`, `email`, `phone`, `dob`, `image`, `gender`, `username`, `active`, `password`, `city`, `admin`, `startdate`) VALUES
-(26, 'Azra', 'Kurtic', 'azrak@gmail.com', '062/459-199', '2021-06-01', 'fsd.png', 'male', 'azrak', b'1', 'azra123', 24, b'1', '2021-06-08'),
-(28, 'Adna', 'Salkovic', 'adnasalk@gmail.com', '062/459-199', '2021-06-02', '', 'female', 'adnasalk', b'1', 'adna123', 24, b'0', '2021-06-10'),
-(29, 'Mujo', 'Hamzic', 'mujo@gmail.com', '062/459-199', '2021-06-03', '', 'male', 'mujohamz', b'1', 'mujo123', 24, b'0', '2021-06-10');
+(32, 'Azra', 'Kurtic', 'azrakurtic@gmail.com', '062561849', '2021-05-31', 'Adriana-Lima.jpg', 'female', 'azrak', b'1', '2450a8e9a4eeebbd95e18852119ea635f71c1c1f', 27, b'0', '2021-06-11'),
+(33, 'Adna', 'Salkovic', 'adnas@gmail.com', '062561849', '2021-06-01', '', 'female', 'adnas', b'1', 'da52bd1f555a79073d28149a774ecc39f35f7d55', 27, b'0', '2021-06-11');
 
 --
 -- Triggers `user`
@@ -307,13 +306,6 @@ CREATE TABLE `userfavorites` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `userfavorites`
---
-
-INSERT INTO `userfavorites` (`fid`, `user`, `object`, `date`) VALUES
-(26, 26, 41, '2021-06-08');
-
---
 -- Triggers `userfavorites`
 --
 DELIMITER $$
@@ -333,15 +325,8 @@ CREATE TABLE `userratings` (
   `uid` int(11) NOT NULL,
   `user` int(11) DEFAULT NULL,
   `object` int(11) DEFAULT NULL,
-  `rating` int(11) DEFAULT NULL
+  `rating` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `userratings`
---
-
-INSERT INTO `userratings` (`uid`, `user`, `object`, `rating`) VALUES
-(43, 26, 41, 5);
 
 --
 -- Triggers `userratings`
@@ -500,19 +485,19 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `userfavorites`
 --
 ALTER TABLE `userfavorites`
-  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `userratings`
 --
 ALTER TABLE `userratings`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables
