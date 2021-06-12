@@ -1,7 +1,7 @@
 function display(){
     var checkboxLength = document.getElementsByClassName("check-box").length;
     var value = document.getElementById("type").value;
-    if (value === "1"){
+    if (value === "1" || value === "5" || value === "6"){
         for (var i=0 ; i<checkboxLength ; i++){
             document.getElementsByClassName("check-box")[i].style="display: block";
         }

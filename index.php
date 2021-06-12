@@ -50,7 +50,7 @@
             <hr class="line">
             <div class="flex wrapper">
                 <div class="cities">
-                    <h4>Sarajevo</h4>
+                    <a href="Citypage/citypage.php"><h4>Sarajevo</h4></a>
                     <h4>Zenica</h4>
                     <h4>Mostar</h4>
                     <h4>Tuzla</h4>

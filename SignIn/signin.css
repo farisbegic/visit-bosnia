@@ -1,18 +1,20 @@
-html, body {
-    height: 100%;
-}
-
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+html{
+    padding: 20px 0;
+}
+
 body {
-    background-repeat: no-repeat;
-    object-position: center;
-    background-size: cover;
     font-family: 'Montserrat';
+    background-size: cover;
+}
+
+a:hover{
+    color: #FFFFFF;
 }
 
 header {
@@ -20,8 +22,12 @@ header {
     font-weight: 600;
     align-items: center;
     justify-content: center;
-    padding: 30px;
+    padding: 20px;
     display: flex;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
 
 header a {
@@ -139,12 +145,8 @@ form input:focus {
 
 @media (max-width: 600px) {
 
-    body {
-        width: auto;
-    }
-
-    header h1 {
-        font-size: 28px;
+    header a {
+        font-size: 30px;
     }
 
     form #mainDiv {
@@ -157,7 +159,7 @@ form input:focus {
     }
 
     form {
-        width: 50%;
+        width: 65%;
         margin: auto;
     }
 

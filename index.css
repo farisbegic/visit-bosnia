@@ -106,6 +106,10 @@ hr {
     margin: 20px auto;
 }
 
+a{
+    text-decoration: none;
+}
+
 .explore-btn {
     display: inline-block;
     text-decoration: none;

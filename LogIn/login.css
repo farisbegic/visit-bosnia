@@ -19,8 +19,6 @@ a:hover{
     color: white; !important;
 }
 
-
-
 html, body {
     height: 100%;
 }
@@ -52,6 +50,7 @@ form #flex {
 form p, span {
     color: white;
     font-size: 14px;
+    font-weight: 700;
 }
 
 form a {
@@ -70,6 +69,7 @@ form input {
     font-family: Source Sans Pro;
     font-size: 16px;
     line-height: 20px;
+    color: #FFFFFF;
 }
 
 ::placeholder {
@@ -106,11 +106,15 @@ form input:focus {
     }
 
     form {
-        width: 40%;
+        width: 65%;
     }
 }
 
 @media (max-width: 500px) {
+
+    header a{
+        font-size: 30px;
+    }
 
     #flex {
         flex-direction: column;

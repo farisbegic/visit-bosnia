@@ -74,7 +74,9 @@ if ($_POST) {
         <p class="existing"><?= $_SESSION['exists']; unset($_SESSION['exists']); ?></p>
         <?php endif; ?>
         <form action="" method = "POST" enctype="multipart/form-data">
+
             <div id = "mainDiv">
+
                 <div class = "part">
                     <input type="text" name="name" placeholder="First Name" required>
                     <input type="text" name="surname" placeholder="Surname" required>
@@ -107,7 +109,9 @@ if ($_POST) {
                     <input type="password" name="password" placeholder="Confirm Password" required>
                     <input type="file" name="image">
                 </div>
+
             </div>
+
             <button type="submit">Sign in</button>
 
         </form>
