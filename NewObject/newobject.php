@@ -47,7 +47,7 @@ if ($_POST){
 
     // Insert Object
 
-    $insertObjectQuery = "INSERT INTO object (name, street, phone, opening_hours, closing_hours, pricing, webpage, email, start_day, close_day, description, isVegan, isGlutenFree, isPetFriendly, isHalal, city, image) VALUES ('$name', '$street', '$phone', '$oHours', '$cHours', '$pricing', '$webpage', '$email', '$oDay', '$cDay', '$description', '$isVegan', '$isGlutenFree', '$isPetFriendly', '$isHalal', '$city', '$imgName')";
+    $insertObjectQuery = "INSERT INTO object (name, street, phone, opening_hours, closing_hours, pricing, webpage, email, start_day, close_day, description, isVegan, isGlutenFree, isPetFriendly, isHalal, city, image) VALUES ('$name', '$street', '$phone', '$oHours', '$cHours', '$pricing', '$webpage', '$email', '$oDay', '$cDay', '{$description}', '$isVegan', '$isGlutenFree', '$isPetFriendly', '$isHalal', '$city', '$imgName')";
 
     mysqli_query($conn, $insertObjectQuery);
 
@@ -57,9 +57,10 @@ if ($_POST){
 
     // Insert M-M
 
-    $insertObjectTypeQuery = "INSERT INTO objecttype(type , object) VALUES ('{$type}', '{$objectID}')";
-
-    mysqli_query($conn, $insertObjectTypeQuery);
+    for ($i=0 ; $i<count($type) ; $i++){
+        $insertObjectTypeQuery = "INSERT INTO objecttype(type , object) VALUES ('{$type[$i]}', '{$objectID}')";
+        mysqli_query($conn, $insertObjectTypeQuery);
+    }
 
     header("Location: ../Dashboard/dashboard.php");
     exit();
@@ -89,8 +90,7 @@ if ($_POST){
     <div class="wrapper">
         <div class="first-part">
 
-            <select name="type" id="type" onchange="display()" required>
-                <option value="" disabled selected>Type</option>
+            <select name="type[]" id="type" onchange="display()" required multiple>
                 <?php while ($row = mysqli_fetch_assoc($types)): ?>
                     <option value="<?= $row['tid'] ?>"><?= $row['name'] ?></option>
                 <?php endwhile; ?>
