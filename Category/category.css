@@ -19,6 +19,7 @@ body {
 .cover {
     height: 60vh;
     background-position: center center;
+    background-size: cover;
 }
 
 .line1 {

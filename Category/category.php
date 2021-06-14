@@ -13,19 +13,19 @@ $pageLink = "category.php?category= " . $categoryID;
 
 // Pagination
 
-$objects = mysqli_fetch_assoc(mysqli_query($conn, "SELECT DISTINCT count(*) as numOfPages FROM objecttype ot, object o, type t WHERE o.active = 1 AND (t.supertype = {$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid"));
+$objects = mysqli_query($conn, "SELECT DISTINCT o.name FROM objecttype ot, object o, type t WHERE o.active = 1 AND (t.supertype = {$categoryID} OR t.tid = {$categoryID}) AND t.tid = ot.type AND ot.object = o.oid");
 
 if ($_POST) {
     $input = $_POST['inputSearch'];
-    $objects = mysqli_fetch_assoc(mysqli_query($conn,"SELECT DISTINCT count(*) as numOfPages FROM objecttype ot, object o, type t WHERE o.active = 1 AND ot.type = {$categoryID} AND ot.object = o.oid AND o.name LIKE '%{$input}%'"));
+    $objects = mysqli_query($conn,"SELECT DISTINCT o.name FROM objecttype ot, object o WHERE o.active = 1 AND ot.type = {$categoryID} AND ot.object = o.oid AND o.name LIKE '%{$input}%'");
 }
 
 if (isset($_GET['pricing'])) {
-    $objects = mysqli_fetch_assoc(mysqli_query($conn, "SELECT DISTINCT count(*) as numOfPages FROM objecttype ot, object o, type t WHERE o.active = 1 AND ot.type= '{$categoryID}' AND ot.object = o.oid AND o.pricing = '{$pricing}'"));
+    $objects = mysqli_query($conn, "SELECT DISTINCT o.name FROM object o, objecttype ot, type t WHERE (t.supertype = $categoryID OR t.tid = $categoryID) AND t.tid = ot.type AND ot.object = o.oid AND o.pricing={$pricing}");
 }
 
 $objectsPerPage = 6;
-$pages = ceil($objects['numOfPages']/$objectsPerPage);
+$pages = ceil(mysqli_num_rows($objects)/$objectsPerPage);
 $offset = ($page - 1) * $objectsPerPage;
 
 // Displaying information

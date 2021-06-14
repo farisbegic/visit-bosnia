@@ -99,7 +99,7 @@ $object = mysqli_fetch_assoc($objectQuery);
     <div id="S2">
         <div class="boxing">
             <h3 class="about-title">About</h3>
-            <img class="about-img" src="../images/objectLocation.png" alt="Map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2878.5422483040675!2d18.306215915503227!3d43.823853479115755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4758ca13b75c51fd%3A0x7595449f92ea53f0!2sSarajevska%20%C5%A1kola%20za%20nauku%20i%20tehnologiju!5e0!3m2!1shr!2sba!4v1623655292104!5m2!1shr!2sba" width="100%" height="350px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             <h3 class="about-title">Description</h3>
             <p class="about-desc"><?= $object['description'] ?></p>
         </div>
