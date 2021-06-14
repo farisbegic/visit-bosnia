@@ -19,9 +19,8 @@ if ($objectRating) {
     if (mysqli_num_rows($checkIfRatedQuery) == 1){
         $rating = mysqli_fetch_assoc($checkIfRatedQuery);
         mysqli_query($conn, "UPDATE userratings SET rating = '{$objectRating}' WHERE uid = '{$rating['uid']}'");
-    }
-    if (mysqli_num_rows($checkIfRatedQuery) != 1){
-        mysqli_query($conn, "INSERT INTO userratings(user, object, rating) VALUES ('{$user}', '{$objectID}', '{$objectRating}')");
+    } else {
+        mysqli_query($conn, "INSERT INTO userratings(user, object, rating) VALUES ('{$user}', '{$objectID}', '{$objectRating}') ");
     }
     $_SESSION['rating'] = "Thank you for your rating";
 }
@@ -108,6 +107,7 @@ $object = mysqli_fetch_assoc($objectQuery);
             <h3 class="about-title">Pictures</h3>
         </div>
 
+        <?php if (isset($_SESSION['auth'])): ?>
         <div class="boxing">
             <h3 class="about-title">Rating</h3>
             <p class="about-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, atque aut beatae commodi culpa ea fuga inventore laboriosam.</p>
@@ -122,6 +122,7 @@ $object = mysqli_fetch_assoc($objectQuery);
                 <a href="object.php?object=<?= $objectID ?>&rating=5" class="rate">Excellent</a>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 
     <?php include("../Includes/footer.php");?>

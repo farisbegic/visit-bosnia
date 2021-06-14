@@ -26,8 +26,8 @@ $user = mysqli_fetch_assoc($userResults);
 
 // Fetch user favourites
 
-$userFavorites = mysqli_query($conn, "SELECT uf.fid, o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM userfavorites uf, object o WHERE uf.user = {$userID} AND uf.object = o.oid LIMIT {$offset}, {$objectsPerPage}");
-$noOfFavorites = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as totalNumber FROM userfavorites uf, object o WHERE uf.user = {$userID} AND uf.object = o.oid"));
+$userFavorites = mysqli_query($conn, "SELECT uf.fid, o.oid,o.name, o.street, o.start_day, o.close_day, o.opening_hours, o.closing_hours, o.phone, o.webpage, o.image FROM userfavorites uf, object o WHERE uf.user = {$userID} AND uf.object = o.oid AND o.active = 1 LIMIT {$offset}, {$objectsPerPage}");
+$noOfFavorites = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as totalNumber FROM userfavorites uf, object o WHERE uf.user = {$userID} AND uf.object = o.oid AND o.active = 1"));
 ?>
 
 <!doctype html>
