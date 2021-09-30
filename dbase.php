@@ -1,2 +1,2 @@
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'visitbosnia');
+$conn = mysqli_connect('localhost', 'admin', 'admin', 'visitbosnia');
